@@ -46,14 +46,16 @@ const Newskills = () => {
 
 		const tl = gsap.timeline({
 			scrollTrigger: {
-				  scroller: "#smooth-wrapper",
-
+				scroller: "#smooth-wrapper",
 				trigger: ".horizontal",
 				start: "bottom 60%",
 				end: "bottom 10%",
 				pin: ".pin-wrap",
 				pinSpacing: true,
-				scrub: true,
+				// containerAnimation: gsap.from(".item",{
+
+				// }) ,
+				scrub: 0.5,
 				invalidateOnRefresh: true,
 				// markers: true
 			}
@@ -67,6 +69,78 @@ const Newskills = () => {
 			xPercent: 41.6,
 			ease: "slow",
 		}, "<");
+
+
+		document.querySelectorAll(".item").forEach(item => {
+
+			// for right to left
+			gsap.to(item,
+
+				{
+					scale: 1,
+					opacity: 1,
+					duration: 0.5,
+					scrollTrigger: {
+						trigger: item,
+						containerAnimation: tl,
+						start: "10% 80%",
+						end: "10% 70%",
+						scrub: true,
+						markers: true
+					}
+				}
+			)
+			gsap.fromTo(item,
+				{ scale: 1, opacity: 1 },
+				{
+					scale: 0.7,
+					opacity: 0.5,
+					duration: 0.5,
+					scrollTrigger: {
+						trigger: item,
+						containerAnimation: tl,
+						start: "10% 30%",
+						end: "10% 20%",
+						scrub: true,
+						// markers: true
+					}
+				}
+			)
+		})
+		document.querySelectorAll(".item2").forEach(item2 => {			// for left to right
+			gsap.to(item2,
+				{
+					scale: 1,
+					opacity: 1,
+					duration: 0.5,
+					scrollTrigger: {
+						trigger: item2,
+						containerAnimation: tl,
+						start: "90% 20%",
+						end: "90% 30%",
+						scrub: true,
+						// markers: true
+					}
+				}
+			)
+			gsap.fromTo(item2,
+				{ scale: 1, opacity: 1 },
+				{
+					scale: 0.7,
+					opacity: 0.5,
+					duration: 0.5,
+					scrollTrigger: {
+						trigger: item2,
+						containerAnimation: tl,
+						start: "90% 70%",
+						end: "90% 80%",
+						scrub: true,
+						// markers: true
+					}
+				}
+			)
+		})
+
 
 	}, { scope: skillsContainer.current! })
 
@@ -87,7 +161,7 @@ const Newskills = () => {
 								<div className="w-[40vw]"></div>
 
 								{/* front ttitle */}
-								<div className="frontTitle   bg-[#76ada6]/50 rounded-[100px] text-5xl h-[400px] w-[40vw]  text-[#015A4E]  flex flex-col gap-8 justify-center items-center">
+								<div className="item bg-[#76ada6]/50 rounded-[100px] text-5xl h-[400px] w-[40vw]  text-[#015A4E]  flex flex-col gap-8 justify-center items-center scale-[0.7] opacity-[0.5]">
 									<div className="font-extrabold tracking-wider">
 										<span className=" text-7xl font-light">&lt; </span>
 										<span className="\">Frontend</span>
@@ -105,7 +179,7 @@ const Newskills = () => {
 								</div>
 
 								{/* BAckend Title */}
-								<div className="frontTitle  bg-[#76ada6]/50 rounded-[100px] text-5xl h-[400px] w-[40vw]  text-[#015A4E]  flex flex-col gap-8 justify-center items-center">
+								<div className="item bg-[#76ada6]/50 rounded-[100px] text-5xl h-[400px] w-[40vw]  text-[#015A4E]  flex flex-col gap-8 justify-center items-center scale-[0.7] opacity-[0.5]">
 									<div className="font-extrabold tracking-wider">
 										<span className=" text-7xl font-light">&lt; </span>
 										<span className="\">Backend</span>
@@ -123,7 +197,7 @@ const Newskills = () => {
 									</div>
 								</div>
 								{/* tools Title */}
-								<div className="frontTitle col-start-5  bg-[#76ada6]/50 rounded-[100px] text-5xl h-[400px] w-[40vw]  text-[#015A4E]  flex flex-col gap-8 justify-center items-center">
+								<div className="item col-start-5  bg-[#76ada6]/50 rounded-[100px] text-5xl h-[400px] w-[40vw]  text-[#015A4E]  flex flex-col gap-8 justify-center items-center scale-[0.7] opacity-[0.5]">
 									<div className="font-extrabold tracking-wider">
 										<span className=" text-7xl font-light">&lt; </span>
 										<span className="\">Tools</span>
@@ -152,7 +226,7 @@ const Newskills = () => {
 						<div className="pin-wrap  flex relative ">
 							<div className="animation-wrap-grid relative grid gap-[10vw] auto-cols-max grid-flow-col transform -translate-x-[70vw]">
 								{/* Frontend Skill Grid */}
-								<div className="frontGrid w-[40vw] h-96 p-8 bg-[#015A4E] rounded-[100px] grid grid-cols-3 gap-0 place-items-center   ">
+								<div className="item2 w-[40vw] h-96 p-8 bg-[#015A4E] rounded-[100px] grid grid-cols-3 gap-0 place-items-center scale-[0.7] opacity-[0.5]   ">
 									{/* Example: HTML */}
 									<div className="p-3 glass rounded-full hover:scale-120 transition-transform duration-300 group">
 
@@ -220,7 +294,7 @@ const Newskills = () => {
 								</div>
 
 								{/* Backeend Skill Grid */}
-								<div className="backGrid w-[40vw] h-96 p-8 bg-[#015A4E] rounded-[100px]   grid grid-cols-3 gap-0 place-items-center">
+								<div className="item2 w-[40vw] h-96 p-8 bg-[#015A4E] rounded-[100px]   grid grid-cols-3 gap-0 place-items-center scale-[0.7] opacity-[0.5]">
 									{/* Express */}
 									<div className="p-3  rounded-xl hover:scale-110 transition-transform duration-300 group">
 										<img
@@ -260,7 +334,7 @@ const Newskills = () => {
 								</div>
 
 								{/* tools Skill Grid */}
-								<div className="toolGrid w-[40vw] h-96 p-8 bg-[#015A4E] rounded-[100px]   grid grid-cols-3 gap-0 place-items-center">
+								<div className="item2 w-[40vw] h-96 p-8 bg-[#015A4E] rounded-[100px]   grid grid-cols-3 gap-0 place-items-center scale-[0.7] opacity-[0.5]">
 									{/* Git */}
 									<div className="p-3  rounded-xl hover:scale-110 transition-transform duration-300 group">
 										<img
