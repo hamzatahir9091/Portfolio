@@ -14,27 +14,27 @@ const NavBar = ({ smootherRef }: NavBarProps) => {
 	useGSAP(() => {
 		if (!smootherRef.current) return
 
-gsap.fromTo(
-  "#innerNav",
-  {
-    backgroundColor: "rgba(1, 90, 78, 0)"
-  },
-  {
-	// color:"#8FDBC2",
-	fontStyle:"bold",
-	scale:1.1,
-    backgroundColor: "rgba(1, 90, 78, 0.35)", 
-    backdropFilter: "blur(12px)",
-    WebkitBackdropFilter: "blur(12px)",
-    scrollTrigger: {
-      trigger: "#home",
-      start: "10% top",
-      end: "40% top",
-      scrub: true,
-      markers: true
-    }
-  }
-)
+		gsap.fromTo(
+			"#innerNav",
+			{
+				backgroundColor: "rgba(1, 90, 78, 0)"
+			},
+			{
+				// color:"#8FDBC2",
+				fontStyle: "bold",
+				scale: 1.1,
+				backgroundColor: "rgba(1, 90, 78, 0.35)",
+				backdropFilter: "blur(12px)",
+				WebkitBackdropFilter: "blur(12px)",
+				scrollTrigger: {
+					trigger: "#home",
+					start: "10% top",
+					end: "40% top",
+					scrub: true,
+					//   markers: true
+				}
+			}
+		)
 
 
 		ScrollTrigger.create({
