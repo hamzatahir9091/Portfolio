@@ -1,15 +1,18 @@
 import { useGSAP } from "@gsap/react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-import { useRef, useEffect } from "react"
+import { useRef } from "react"
+
+
 
 interface NavBarProps {
 	smootherRef: React.RefObject<any>
+
+	animationWrapRef: React.RefObject<HTMLDivElement>
+
 }
-const NavBar = ({ smootherRef }: NavBarProps) => {
-	const homeRef = useRef<HTMLDivElement>(null)
-	const aboutRef = useRef<HTMLDivElement>(null)
-	const skillsRef = useRef<HTMLDivElement>(null)
+const NavBar = ({ smootherRef, animationWrapRef }: NavBarProps) => {
+
 
 	useGSAP(() => {
 		if (!smootherRef.current) return
@@ -41,10 +44,10 @@ const NavBar = ({ smootherRef }: NavBarProps) => {
 			trigger: "#about",
 			start: "top center",
 			onEnter: () => {
-				gsap.to("#bubble", { left: "112px", duration: 0.4, ease: "power2.out" })
+				gsap.to("#bubble", { left: "6.67vw", duration: 0.4, ease: "power2.out" })
 			},
 			onLeaveBack: () => {
-				gsap.to("#bubble", { left: "12px", duration: 0.4 })
+				gsap.to("#bubble", { left: "0.68vw", duration: 0.4 })
 			},
 		})
 
@@ -52,33 +55,40 @@ const NavBar = ({ smootherRef }: NavBarProps) => {
 			trigger: "#skills",
 			start: "top center",
 			onEnter: () => {
-				gsap.to("#bubble", { left: "210px", duration: 0.4, ease: "power2.out" })
+				gsap.to("#bubble", { left: "12.50vw", duration: 0.4, ease: "power2.out" })
 			},
 			onLeaveBack: () => {
-				gsap.to("#bubble", { left: "112px", duration: 0.4 })
+				gsap.to("#bubble", { left: "6.71vw", duration: 0.4 })
 			},
 		})
 	})
 
 	const handleClick = (destination: String) => {
+
+		if (destination === "#projects") {
+			animationWrapRef.current!.scrollLeft += 400
+		}
+
+
 		smootherRef.current.scrollTo(destination, true)
+
 	}
 
 	return (
-		<div className="text-[#00c0a6]">
-			<div className="nav text-[#015A4E]  w-screen h-18 mt-5 flex gap-10 justify-center items-center text-xl fixed z-100">
+		<div className="">
+			<div className="nav text-[#015A4E]  w-screen h-[4.29vw] mt-[1.19vw] flex gap-[2.38vw] justify-center items-center text-[1.19vw] fixed z-100">
 				<div
 					id="innerNav"
-					className="relative flex gap-12 px-6 py-4 rounded-[100px] backdrop-blur-md ">
+					className="relative flex gap-[2.86vw] px-[1.43vw] py-[0.95vw] rounded-[100px] backdrop-blur-md ">
 					{/* bubble */}
 					<div
 						id="bubble"
-						className="w-20 h-12 glass absolute top-[6px] left-[12px] rounded-full"></div>
+						className="w-[4.76vw] h-[2.86vw] glass absolute top-[0.36vw] left-[0.71vw] rounded-full"></div>
 
 					<span onClick={() => handleClick("#home")}>Home</span>
 					<span onClick={() => handleClick("#about")}>About</span>
 					<span onClick={() => handleClick("#skills")}>Skills</span>
-					<span onClick={() => handleClick("#skills")}>Project</span>
+					<span onClick={() => handleClick("#projects")}>Project</span>
 					<span onClick={() => handleClick("#skills")}>Contacts</span>
 				</div>
 			</div>

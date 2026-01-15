@@ -1,145 +1,253 @@
-import React, { useEffect, useRef } from "react"
+import React, { useCallback, useEffect, useRef } from "react"
 import gsap from "gsap"
 import { useGSAP } from "@gsap/react"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { SplitText } from "gsap/SplitText"
 
 
-gsap.registerPlugin(SplitText)
+interface NewSkillsProps {
+	smootherRef: React.RefObject<any>
+}
 
-const Newskills = () => {
 
+
+const Newskills = ({ smootherRef }: NewSkillsProps) => {
+
+	// --- SCALING LOGIC (New way without GSAP horizontal scrub) ---
+	const checkCenter = useCallback(() => {
+		const items = document.querySelectorAll(".item, .item2");
+		const viewportCenter = window.innerWidth / 2;
+		const tolerance = 350; // How close to center before scaling up (in pixels)
+
+		items.forEach(item => {
+			const rect = item.getBoundingClientRect();
+			// Calculate the item's on-screen center position
+			const itemCenter = rect.left + rect.width / 2;
+
+			// Check if the item's center is within the tolerance of the viewport center
+			if (Math.abs(itemCenter - viewportCenter) < tolerance) {
+				// Animate to scaled-up state
+				gsap.to(item, {
+					scale: 1,
+					opacity: 1,
+					filter:"blur(0px)",
+					duration: 0.5, // Smoother transition
+					overwrite: true, // Crucial: ensures only the latest animation runs
+				});
+			} else {
+				// Animate to scaled-down state (default from CSS: scale-[0.7] opacity-[0.5])
+				gsap.to(item, {
+					scale: 0.7,
+					opacity: 0.5,
+					filter:"blur(5px)",
+					duration: 0.5,
+					overwrite: true,
+				});
+			}
+		});
+	}, []);
+
+	// useEffect(() => {
+	// 	const firstEl = firstSkillAnimation.current;
+	// 	const secondEl = secondSkillAnimation.current;
+
+	// 	if (!firstEl || !secondEl) return;
+
+	// 	// Attach the listener to the scrollable divs
+	// 	// Using both is necessary if the scroll positions are independent
+	// 	firstEl.addEventListener('scroll', checkCenter);
+	// 	secondEl.addEventListener('scroll', checkCenter);
+
+	// 	// Run once on mount to set initial state
+	// 	checkCenter();
+
+	// 	return () => {
+	// 		// Cleanup listeners
+	// 		firstEl.removeEventListener('scroll', checkCenter);
+	// 		secondEl.removeEventListener('scroll', checkCenter);
+	// 	};
+	// }, [checkCenter]);
+
+	// now checking center at eacch frame intead of scroll
+    useEffect(() => {
+        const firstEl = firstSkillAnimation.current;
+        const secondEl = secondSkillAnimation.current;
+
+        if (!firstEl || !secondEl) return;
+
+        let rAF: number;
+        let isTicking = false;
+
+        const handleScroll = () => {
+            if (!isTicking) {
+                // Use requestAnimationFrame to ensure checkCenter runs once per frame
+                rAF = requestAnimationFrame(() => {
+                    checkCenter();
+                    isTicking = false;
+                });
+                isTicking = true;
+            }
+        };
+
+        // Attach the listener to the scrollable divs
+        firstEl.addEventListener('scroll', handleScroll);
+        secondEl.addEventListener('scroll', handleScroll);
+
+        // Run once on mount to set initial state
+        checkCenter();
+
+        return () => {
+            // Cleanup listeners and requestAnimationFrame
+            firstEl.removeEventListener('scroll', handleScroll);
+            secondEl.removeEventListener('scroll', handleScroll);
+            cancelAnimationFrame(rAF);
+        };
+    }, [checkCenter]);
 	const skillsContainer = useRef(null)
+	const firstSkillAnimation = useRef<HTMLDivElement | null>(null)
+	const secondSkillAnimation = useRef<HTMLDivElement | null>(null)
+
 
 	useGSAP(() => {
+		if (!smootherRef.current) return
+
+		// creating split texts logic
+		const splitSkill = SplitText.create(".bigSkill", {
+			type: "chars",
+		})
+
+
+		const bigtl = gsap.timeline({
+			scrollTrigger: {
+				invalidateOnRefresh: true,
+				trigger: ".bigSkill",
+				start: "bottom 78%",
+				end: "bottom 60%",
+				pin: true,
+				pinSpacing: true,
+				scrub: 0.5,
+				// markers: true,
+			}
+		})
+		bigtl.set(splitSkill.chars, { x: "100vw" })
+			.fromTo(splitSkill.chars, { x: "100vw" }, {
+				x: 0,
+				stagger: 0.2,
+			})
 		ScrollTrigger.create({
+			invalidateOnRefresh: true,
 			trigger: ".bigSkill",
-			start: "top 10%",
+			start: "top 7%",
 			endTrigger: "#skills",
-			end: "bottom top",
-			pin: ".bigSkill",
+			end: "bottom 32%",
+			pin: ".big-wrap",
 			// pinSpacing: true,
 			// markers: true
 		});
-		gsap.from(".bigSkill", {
-			x: -1450,
-			duration: 1,
+
+		gsap.to(".bigSkill", {
+			// fontSize: "10vw",
+			scale: 0.2,
 			scrollTrigger: {
+				invalidateOnRefresh: true,
 				trigger: ".bigSkill",
-				start: "bottom bottom",
-				end: "top top",
-				// scrub: true,
-				// markers: true
-			}
-		})
-		gsap.from(".bigSkill", {
-			scale: 5,
-			scrollTrigger: {
-				trigger: ".bigSkill",
-				start: "bottom bottom",
-				end: "top top",
+				start: "top 77%",
+				end: "top 15%",
 				scrub: true,
 				// markers: true
 			}
 		})
 
 
-		const tl = gsap.timeline({
-			scrollTrigger: {
-				scroller: "#smooth-wrapper",
-				trigger: ".horizontal",
-				start: "bottom 60%",
-				end: "bottom 10%",
-				pin: ".pin-wrap",
-				pinSpacing: true,
-				// containerAnimation: gsap.from(".item",{
+		// to make first animation start from end 
+		ScrollTrigger.create({
+			invalidateOnRefresh: true,
+			trigger: "#skills",
+			start: "top bottom",
+			end: "top 90%",
+			onEnter: () => {
+				const el = firstSkillAnimation.current!
+				if (!el) return
 
-				// }) ,
-				scrub: 0.5,
-				invalidateOnRefresh: true,
-				// markers: true
-			}
+				el.scrollTo({
+					left: el.scrollWidth - el.clientWidth,
+					behavior: "auto" // only this scroll is instant
+				})
+			},
+			// markers: true
 		})
 
-		tl.to(".animation-wrap", {
-			xPercent: -41.6,
-			ease: "slow",
+
+		function getScrollAmount(container: HTMLDivElement) {
+			const firstCard = container.querySelector<HTMLElement>(".item, .item2");
+			if (!firstCard) return 0;
+
+			const cardWidth = firstCard.offsetWidth; // width in px
+			const style = getComputedStyle(container);
+			const gap = parseFloat(style.columnGap || style.gap || "0"); // get CSS gap
+			return cardWidth + gap;
+		}
+
+
+
+		ScrollTrigger.create({
+			invalidateOnRefresh: true,
+			trigger: "#skills",
+			start: "80% 80%",
+			end: "80% 75%",
+			pin: ".pin-wrap",
+			// pinSpacing: true,
+			markers: true
+		})
+
+		ScrollTrigger.create({
+			invalidateOnRefresh: true,
+			trigger: "#skills",
+			start: "80% 75%",
+			end: "80% 50%",
+			onEnter: () => {
+				const amount1 = getScrollAmount(firstSkillAnimation.current!);
+				const amount2 = getScrollAmount(secondSkillAnimation.current!);
+
+				gsap.to(firstSkillAnimation.current, { scrollLeft: firstSkillAnimation.current!.scrollLeft - amount1, duration: 1 });
+				gsap.to(secondSkillAnimation.current, { scrollLeft: secondSkillAnimation.current!.scrollLeft + amount2, duration: 1 });
+			},
+			onLeave: () => {
+				const amount1 = getScrollAmount(firstSkillAnimation.current!);
+				const amount2 = getScrollAmount(secondSkillAnimation.current!);
+
+				gsap.to(firstSkillAnimation.current, { scrollLeft: firstSkillAnimation.current!.scrollLeft - amount1, duration: 1 });
+				gsap.to(secondSkillAnimation.current, { scrollLeft: secondSkillAnimation.current!.scrollLeft + amount2, duration: 1 });
+			},
+			onEnterBack: () => {
+				const amount1 = getScrollAmount(firstSkillAnimation.current!);
+				const amount2 = getScrollAmount(secondSkillAnimation.current!);
+
+				gsap.to(firstSkillAnimation.current, { scrollLeft: firstSkillAnimation.current!.scrollLeft + amount1, duration: 1 });
+				gsap.to(secondSkillAnimation.current, { scrollLeft: secondSkillAnimation.current!.scrollLeft - amount2, duration: 1 });
+			},
+			onLeaveBack: () => {
+				const amount1 = getScrollAmount(firstSkillAnimation.current!);
+				const amount2 = getScrollAmount(secondSkillAnimation.current!);
+
+				gsap.to(firstSkillAnimation.current, { scrollLeft: firstSkillAnimation.current!.scrollLeft + amount1, duration: 1 });
+				gsap.to(secondSkillAnimation.current, { scrollLeft: secondSkillAnimation.current!.scrollLeft - amount2, duration: 1 });
+			},
+			markers: true,
+			pin: ".pin-wrap",
+			pinSpacing: true,
+
 		});
-		tl.to(".animation-wrap-grid", {
-			xPercent: 41.6,
-			ease: "slow",
-		}, "<");
-
-
-		document.querySelectorAll(".item").forEach(item => {
-
-			// for right to left
-			gsap.to(item,
-
-				{
-					scale: 1,
-					opacity: 1,
-					duration: 0.5,
-					scrollTrigger: {
-						trigger: item,
-						containerAnimation: tl,
-						start: "10% 80%",
-						end: "10% 70%",
-						scrub: true,
-						markers: true
-					}
-				}
-			)
-			gsap.fromTo(item,
-				{ scale: 1, opacity: 1 },
-				{
-					scale: 0.7,
-					opacity: 0.5,
-					duration: 0.5,
-					scrollTrigger: {
-						trigger: item,
-						containerAnimation: tl,
-						start: "10% 30%",
-						end: "10% 20%",
-						scrub: true,
-						// markers: true
-					}
-				}
-			)
+		ScrollTrigger.create({
+			invalidateOnRefresh: true,
+			trigger: "#skills",
+			start: "80% 50%",
+			end: "80% 40%",
+			pin: ".pin-wrap",
+			pinSpacing: true,
+			markers: true
 		})
-		document.querySelectorAll(".item2").forEach(item2 => {			// for left to right
-			gsap.to(item2,
-				{
-					scale: 1,
-					opacity: 1,
-					duration: 0.5,
-					scrollTrigger: {
-						trigger: item2,
-						containerAnimation: tl,
-						start: "90% 20%",
-						end: "90% 30%",
-						scrub: true,
-						// markers: true
-					}
-				}
-			)
-			gsap.fromTo(item2,
-				{ scale: 1, opacity: 1 },
-				{
-					scale: 0.7,
-					opacity: 0.5,
-					duration: 0.5,
-					scrollTrigger: {
-						trigger: item2,
-						containerAnimation: tl,
-						start: "90% 70%",
-						end: "90% 80%",
-						scrub: true,
-						// markers: true
-					}
-				}
-			)
-		})
+
 
 
 	}, { scope: skillsContainer.current! })
@@ -147,27 +255,43 @@ const Newskills = () => {
 
 	return (
 		<div ref={skillsContainer} id="skills" className="">
-			<div className="mainContent  w-screen min-h-screen pt-32 flex flex-col gap-24 justify-center ">
-				<div className="flex justify-center w-screen">
-					<div className="bigSkill text-8xl mt-10 font-extrabold text-[#015A4E]">Skills</div>
+			<div className="mainContent  w-screen min-h-screen pt-[7.62vw] flex flex-col gap-[5.71vw] justify-center ">
+				<div className="big-wrap flex justify-center  w-screen">
+					<div className="bigSkill leading-0 text-[35vw] mt-0 mb-[15.24vw] font-extrabold text-[#015A4E] ">Skills</div>
 				</div>
 
 				<div className="pin-wrap">
-					<section id="titles" className="horizontal  flex items-center overflow-hidden">
-						<div className="pin-wrap  flex relative ">
-							<div className="animation-wrap relative grid gap-[10vw] auto-cols-max  grid-flow-col transform -translate-x-[70vw]">
-								{/* extra space divs */}
-								<div className="w-[40vw]"></div>
-								<div className="w-[40vw]"></div>
+					<section id="titles" className="horizontal w-screen flex items-center ">
+						<div className="pin-wrape  flex relative w-screen overflow-hidden ">
+							<div ref={firstSkillAnimation}
+								className="animation-wrap-1  relative grid gap-[3.3vw] auto-cols-max  grid-flow-col overflow-scroll  hide-scrollbar pointer-events-none touch-pan-y mx-[1.6vw] ">
 
-								{/* front ttitle */}
-								<div className="item bg-[#76ada6]/50 rounded-[100px] text-5xl h-[400px] w-[40vw]  text-[#015A4E]  flex flex-col gap-8 justify-center items-center scale-[0.7] opacity-[0.5]">
+								{/* extra space divs */}
+								<div className="item opacity-0 max-w-[30vw] text-transparent justify-center items-center scale-[0.7]  snap-center">
 									<div className="font-extrabold tracking-wider">
 										<span className=" text-7xl font-light">&lt; </span>
 										<span className="\">Frontend</span>
 										<span className=" text-7xl font-light"> /&gt;</span>
 									</div>
-									<div className="tsxt text-xl text-center">
+									<div className="tsxt text-[1.19vw] text-center">
+										<p>
+											I specialize in frontend development using HTML, CSS,
+											JavaScript, and React, with a strong focus on animations and
+											interactive UI. I enjoy working with GSAP and SVG animations to
+											create smooth, engaging user experiences, while keeping layouts
+											responsive, clean, and performance-friendly.
+										</p>
+									</div>
+								</div>
+
+								{/* front ttitle */}
+								<div className="item blur-[5px] bg-[#76ada6]/50 rounded-[5.95vw] text-[2.86vw] h-[23.81vw] w-[30vw]  text-[#015A4E]  flex flex-col gap-[1.90vw] justify-center items-center scale-[0.7] opacity-[0.5] snap-center">
+									<div className="font-extrabold tracking-wider">
+										<span className=" text-7xl font-light">&lt; </span>
+										<span className="\">Frontend</span>
+										<span className=" text-7xl font-light"> /&gt;</span>
+									</div>
+									<div className="tsxt text-[1.19vw] text-center">
 										<p>
 											I specialize in frontend development using HTML, CSS,
 											JavaScript, and React, with a strong focus on animations and
@@ -179,13 +303,13 @@ const Newskills = () => {
 								</div>
 
 								{/* BAckend Title */}
-								<div className="item bg-[#76ada6]/50 rounded-[100px] text-5xl h-[400px] w-[40vw]  text-[#015A4E]  flex flex-col gap-8 justify-center items-center scale-[0.7] opacity-[0.5]">
+								<div className="item blur-[5px] bg-[#76ada6]/50 rounded-[5.95vw] text-[2.86vw] h-[23.81vw] w-[30vw]  text-[#015A4E]  flex flex-col gap-[1.90vw] justify-center items-center scale-[0.7] opacity-[0.5] snap-center">
 									<div className="font-extrabold tracking-wider">
 										<span className=" text-7xl font-light">&lt; </span>
 										<span className="\">Backend</span>
 										<span className=" text-7xl font-light"> /&gt;</span>
 									</div>
-									<div className="tsxt text-xl text-center">
+									<div className="tsxt text-[1.19vw] text-center">
 										<p>
 											I focus on building reliable and efficient backend systems that
 											power real-world applications. I work with JavaScript-based
@@ -196,14 +320,15 @@ const Newskills = () => {
 										</p>
 									</div>
 								</div>
+
 								{/* tools Title */}
-								<div className="item col-start-5  bg-[#76ada6]/50 rounded-[100px] text-5xl h-[400px] w-[40vw]  text-[#015A4E]  flex flex-col gap-8 justify-center items-center scale-[0.7] opacity-[0.5]">
+								<div className="item blur-[5px] bg-[#76ada6]/50 rounded-[5.95vw] text-[2.86vw] h-[23.81vw] w-[30vw]  text-[#015A4E]  flex flex-col gap-[1.90vw] justify-center items-center scale-[0.7] opacity-[0.5] snap-center">
 									<div className="font-extrabold tracking-wider">
 										<span className=" text-7xl font-light">&lt; </span>
 										<span className="\">Tools</span>
 										<span className=" text-7xl font-light"> /&gt;</span>
 									</div>
-									<div className="tsxt text-xl text-center">
+									<div className="tsxt text-[1.19vw] text-center">
 										<p>
 											Alongside my frontend and backend work, I use a set of tools
 											that streamline development and enhance project quality. Git and
@@ -217,16 +342,53 @@ const Newskills = () => {
 									</div>
 								</div>
 
+								{/* extra space divs */}
+								<div className="item opacity-0 max-w-[30vw] text-transparent justify-center items-center scale-[0.7]  snap-center">
+									<div className="font-extrabold tracking-wider">
+										<span className=" text-7xl font-light">&lt; </span>
+										<span className="\">Frontend</span>
+										<span className=" text-7xl font-light"> /&gt;</span>
+									</div>
+									<div className="tsxt text-[1.19vw] text-center">
+										<p>
+											I specialize in frontend development using HTML, CSS,
+											JavaScript, and React, with a strong focus on animations and
+											interactive UI. I enjoy working with GSAP and SVG animations to
+											create smooth, engaging user experiences, while keeping layouts
+											responsive, clean, and performance-friendly.
+										</p>
+									</div>
+								</div>
 
 							</div>
 						</div>
 					</section>
 
-					<section id="grids" className="horizontal-grid  flex items-center overflow-hidden">
-						<div className="pin-wrap  flex relative ">
-							<div className="animation-wrap-grid relative grid gap-[10vw] auto-cols-max grid-flow-col transform -translate-x-[70vw]">
+					<section id="grids" className="horizontal-grid  flex items-center w-screen  ">
+						<div className="pin-wrape  flex relative w-screen overflow-hidden">
+							<div ref={secondSkillAnimation}
+								className="animation-wrap-2  relative grid gap-[3.3vw] auto-cols-max grid-flow-col overflow-scroll  hide-scrollbar pointer-events-none touch-pan-y mx-[1.6vw] ">
+
+								{/* extra space divs */}
+								<div className="item opacity-0 max-w-[30vw] text-transparent justify-center items-center scale-[0.7]  snap-center">
+									<div className="font-extrabold tracking-wider">
+										<span className=" text-7xl font-light">&lt; </span>
+										<span className="\">Frontend</span>
+										<span className=" text-7xl font-light"> /&gt;</span>
+									</div>
+									<div className="tsxt text-[1.19vw] text-center">
+										<p>
+											I specialize in frontend development using HTML, CSS,
+											JavaScript, and React, with a strong focus on animations and
+											interactive UI. I enjoy working with GSAP and SVG animations to
+											create smooth, engaging user experiences, while keeping layouts
+											responsive, clean, and performance-friendly.
+										</p>
+									</div>
+								</div>
+
 								{/* Frontend Skill Grid */}
-								<div className="item2 w-[40vw] h-96 p-8 bg-[#015A4E] rounded-[100px] grid grid-cols-3 gap-0 place-items-center scale-[0.7] opacity-[0.5]   ">
+								<div className="item2 blur-[5px] w-[30vw] h-[22.86vw] p-[1.90vw] bg-[#015A4E] rounded-[5.95vw] grid grid-cols-3 gap-0 place-items-center scale-[0.7] opacity-[0.5]  snap-center  ">
 									{/* Example: HTML */}
 									<div className="p-3 glass rounded-full hover:scale-120 transition-transform duration-300 group">
 
@@ -294,7 +456,7 @@ const Newskills = () => {
 								</div>
 
 								{/* Backeend Skill Grid */}
-								<div className="item2 w-[40vw] h-96 p-8 bg-[#015A4E] rounded-[100px]   grid grid-cols-3 gap-0 place-items-center scale-[0.7] opacity-[0.5]">
+								<div className="item2 blur-[5px] w-[30vw] h-[22.86vw] p-[1.90vw] bg-[#015A4E] rounded-[5.95vw]  grid grid-cols-3 gap-0 place-items-center scale-[0.7] opacity-[0.5] snap-center">
 									{/* Express */}
 									<div className="p-3  rounded-xl hover:scale-110 transition-transform duration-300 group">
 										<img
@@ -334,7 +496,7 @@ const Newskills = () => {
 								</div>
 
 								{/* tools Skill Grid */}
-								<div className="item2 w-[40vw] h-96 p-8 bg-[#015A4E] rounded-[100px]   grid grid-cols-3 gap-0 place-items-center scale-[0.7] opacity-[0.5]">
+								<div className="item2 blur-[5px] w-[30vw] h-[22.86vw] p-[1.90vw] bg-[#015A4E] rounded-[5.95vw]  grid grid-cols-3 gap-0 place-items-center scale-[0.7] opacity-[0.5] snap-center">
 									{/* Git */}
 									<div className="p-3  rounded-xl hover:scale-110 transition-transform duration-300 group">
 										<img
@@ -365,8 +527,23 @@ const Newskills = () => {
 								</div>
 
 								{/* extra space divs */}
-								<div className="w-[40vw]"></div>
-								<div className="w-[40vw]"></div>
+								<div className="item opacity-0 max-w-[30vw] text-transparent justify-center items-center scale-[0.7]  snap-center">
+									<div className="font-extrabold tracking-wider">
+										<span className=" text-7xl font-light">&lt; </span>
+										<span className="\">Frontend</span>
+										<span className=" text-7xl font-light"> /&gt;</span>
+									</div>
+									<div className="tsxt text-[1.19vw] text-center">
+										<p>
+											I specialize in frontend development using HTML, CSS,
+											JavaScript, and React, with a strong focus on animations and
+											interactive UI. I enjoy working with GSAP and SVG animations to
+											create smooth, engaging user experiences, while keeping layouts
+											responsive, clean, and performance-friendly.
+										</p>
+									</div>
+								</div>
+
 							</div>
 						</div>
 					</section>
@@ -377,3 +554,11 @@ const Newskills = () => {
 }
 
 export default Newskills
+
+
+// log
+
+// yea first i created horizontal scroll animatin using scrolltrigger , spent whole day on it and then there came the issue of snapping 
+// so i chaged it to manual and spent anothr day on it , css snapping with native scrollbar
+// and now i changed it to scroll trigger 
+// wow na 😭

@@ -31,7 +31,7 @@ const Home = () => {
 			".leftbrac",
 			{
 				opacity: 0,
-				x: 250,
+				x: "14.88vw",
 				duration: 0.5,
 				stagger: 0.05,
 				ease: "none",
@@ -42,7 +42,7 @@ const Home = () => {
 				".rightbrac",
 				{
 					opacity: 0,
-					x: -250,
+					x: "-14.88vw",
 					duration: 0.5,
 					stagger: 0.05,
 					ease: "none",
@@ -78,7 +78,7 @@ const Home = () => {
 				splitfirst.chars,
 				{
 					opacity: 0,
-					y: 4,
+					y: "0.24vw",
 					duration: 0.5,
 					stagger: 0.05,
 					ease: "none",
@@ -87,7 +87,7 @@ const Home = () => {
 			)
 			.from(splitname.chars, {
 				opacity: 0,
-				y: 4,
+				y: "0.24vw",
 				duration: 0.5,
 				stagger: 0.05,
 				ease: "none",
@@ -99,7 +99,7 @@ const Home = () => {
 				".lefttag",
 				{
 					opacity: 0,
-					x: 280,
+					x: "16.67vw",
 					duration: 0.5,
 					stagger: 0.05,
 					ease: "none",
@@ -110,7 +110,7 @@ const Home = () => {
 				".righttag",
 				{
 					opacity: 0,
-					x: -280,
+					x: "-16.67",
 					duration: 0.5,
 					stagger: 0.05,
 					ease: "none",
@@ -142,34 +142,34 @@ const Home = () => {
 		<>
 			<div id="home" className="">
 				<div
-					className={`homeScreen min-h-[110%] min-w-screen flex flex-col justify-center items-center transition-all duration-300 ease-in-out  relative `}>
+					className={`homeScreen min-h-screen min-w-screen flex flex-col justify-center items-center transition-all duration-300 ease-in-out  relative `}>
 					<div className="mainContent  min-w-screen flex flex-row justify-center items-center ">
 						<div className="home-text text-[#015A4E]  w-1/2 h-screen flex flex-col justify-center items-center  ">
-							<div className="mainText text-5xl flex gap-3 justify-center items-center">
-								<span className="leftbrac  text-6xl">&lt;&nbsp;</span>
+							<div className="mainText text-[2.86vw] flex gap-[0.71vw] justify-center items-center">
+								<span className="leftbrac  text-[3.57vw]">&lt;&nbsp;</span>
 								<span className="firstline">
 									<span>Hello, I'm</span>
 								</span>
-								<span className="name text-7xl text-[#015A4E] font-extrabold inline-block">
+								<span className="name text-[4.29vw] text-[#015A4E] font-extrabold inline-block">
 									{" "}
 									HAMZA
 								</span>{" "}
-								<span className="rightbrac  text-6xl">&nbsp;/&gt;</span>
+								<span className="rightbrac  text-[3.57vw]">&nbsp;/&gt;</span>
 							</div>
 
-							<div className="sectext text-5xl flex gap-3 justify-center items-center">
-								<span className="lefttag  text-6xl">&lt;&nbsp;</span>
+							<div className="sectext text-[3.57vw] flex gap-[0.71vw] justify-center items-center">
+								<span className="lefttag  text-[3.57vw]">&lt;&nbsp;</span>
 								<span className="secondline">I'm a Full Stack Developer</span>
 
-								<span className="righttag  text-6xl">&nbsp;/&gt;</span>
+								<span className="righttag  text-[3.57vw]">&nbsp;/&gt;</span>
 							</div>
 						</div>
 						<div
 							data-speed="clamp(2)"
 							className="image  w-1/2  h-screen text-center flex justify-center items-center ">
-							<div className="imgWrapper bg-[#015A4E] p-7 rounded-[100px] shadow-lg shadow-gray-400">
+							<div className="imgWrapper bg-[#015A4E] p-[1.67vw] rounded-[5vw] shadow-lg shadow-gray-400">
 								<img
-									className="me rounded-[80px] w-[600px] h-auto"
+									className="me rounded-[5vw] w-[35.71vw] h-auto"
 									src="src/assets/home.png"
 									alt="me waving at u pal"
 								/>

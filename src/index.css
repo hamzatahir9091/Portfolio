@@ -49,3 +49,14 @@
 	background-size: 200% 200%; /* make gradient large so it can move */
 	animation: gradientShift 10s ease infinite; /* slow smooth animation */
 }
+
+
+/* hidding the scrollbar of skills animations  */
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}

@@ -7,7 +7,6 @@ import Newskills from "./components/Newskills"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { ScrollSmoother } from "gsap/ScrollSmoother"
 import logosData from "./assets/logosdata"
-import { useGSAP } from "@gsap/react"
 import Projects from "./components/Projects"
 // import Menu from "./components/Menu"
 
@@ -18,6 +17,8 @@ function App() {
 	const smootherRef = useRef<any>(null)
 	const containerRef = useRef<HTMLDivElement>(null)
 
+
+
 	useEffect(() => {
 		smootherRef.current = ScrollSmoother.create({
 			wrapper: "#smooth-wrapper",
@@ -26,8 +27,32 @@ function App() {
 			effects: true,
 		})
 
+		// if i want the app to load at home on refresh
 
-		return () => smootherRef.current.kill()
+		// Add a small delay to ensure it runs *after* the browser finishes loading
+		const timeoutId = setTimeout(() => {
+			// Force native scroll to top
+			window.scrollTo(0, 0);
+
+			// Force smoother scroll to top
+			if (smootherRef.current && smootherRef.current.scrollTo) {
+				smootherRef.current.scrollTo(0, false);
+			}
+		}, 100); // 100ms should be enough
+
+		const handleResize = () => {
+			ScrollTrigger.refresh()
+		}
+
+		window.addEventListener("resize", handleResize)
+		window.addEventListener("", handleResize)
+
+		return () => {
+			// clearTimeout(timeoutId); // Cleanup
+
+			smootherRef.current.kill()
+			window.removeEventListener("resize", handleResize)
+		}
 	}, [])
 
 	const imageSelector = ".img"
@@ -126,7 +151,7 @@ opacity-
 
 					<About />
 
-					<Newskills />
+					<Newskills smootherRef={smootherRef} />
 
 					<Projects />
 				</div>

@@ -20,21 +20,21 @@ const About = () => {
 
 		// creating split texts logic
 		const splitlines = SplitText.create(".about-text", {
-			type: "lines",
+			type: "chars",
 			linesClass: "m-2"
 		})
 
-		gsap.from(splitlines.lines, {
-			x: 1000,
+		gsap.from(splitlines.chars, {
+			opacity: 0,
 			stagger: 0.1,
 			lineHeight: "0.1em",
 			scrollTrigger: {
 				trigger: ".bigAbout",
 				start: "top 15%",
-				end: "top 10%",
-				// scrub:true,
+				end: "bottom 40%",
+				scrub: true,
 				// pin:true,
-
+				// markers: true
 			}
 
 		})
@@ -62,20 +62,20 @@ const About = () => {
 			<div id="about" className=" h-screen flex flex-col  items-center justify-end ">
 
 				<div
-					className="bigAbout text-8xl font-extrabold text-[#015A4E]">
+					className="bigAbout text-[5.71vw] font-extrabold text-[#015A4E]">
 					About
 				</div>
 
-				<div data-speed="2" className="content w-screen h-[70%]   flex justify-center items-center gap-20  ">
-					<div className="aboutImg bg-[#015A4E] p-7 rounded-[100px] shadow-lg shadow-gray-400">
+				<div data-speed="2" className="content w-screen h-[70%]   flex justify-center items-center gap-[4.76vw]  ">
+					<div className="aboutImg bg-[#015A4E] p-[1.67vw] rounded-[5.95vw] shadow-lg shadow-gray-400">
 						<img
-							className=" rounded-[80px] w-[600px] h-auto"
+							className=" rounded-[4.76vw] w-[35.71vw] h-auto"
 							src="/src/assets/about.png"
 							alt="my-self"
 						/>
 					</div>
 					<div>
-						<div className="about-text max-w-3xl leading-relaxed space-y-6 text-xl text-[#000000]">
+						<div className="about-text max-w-[45.71vw] leading-relaxed space-y-[1.43vw] text-[1.19vw] text-[#000000]">
 							<p>
 								Hi, I’m{" "}
 								<span className="text-[#008275] font-bold">Hamza</span>, a
