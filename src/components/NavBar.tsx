@@ -1,17 +1,15 @@
 import { useGSAP } from "@gsap/react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-import { useRef } from "react"
+import DarkModeToggle from "./DarkModeToggle"
+
 
 
 
 interface NavBarProps {
 	smootherRef: React.RefObject<any>
-
-	animationWrapRef: React.RefObject<HTMLDivElement>
-
 }
-const NavBar = ({ smootherRef, animationWrapRef }: NavBarProps) => {
+const NavBar = ({ smootherRef }: NavBarProps) => {
 
 
 	useGSAP(() => {
@@ -64,12 +62,6 @@ const NavBar = ({ smootherRef, animationWrapRef }: NavBarProps) => {
 	})
 
 	const handleClick = (destination: String) => {
-
-		if (destination === "#projects") {
-			animationWrapRef.current!.scrollLeft += 400
-		}
-
-
 		smootherRef.current.scrollTo(destination, true)
 
 	}
@@ -90,6 +82,7 @@ const NavBar = ({ smootherRef, animationWrapRef }: NavBarProps) => {
 					<span onClick={() => handleClick("#skills")}>Skills</span>
 					<span onClick={() => handleClick("#projects")}>Project</span>
 					<span onClick={() => handleClick("#skills")}>Contacts</span>
+					{/* <span ><DarkModeToggle /></span> */}
 				</div>
 			</div>
 		</div>

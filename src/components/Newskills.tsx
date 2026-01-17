@@ -139,7 +139,7 @@ const Newskills = ({ smootherRef }: NewSkillsProps) => {
 			trigger: ".bigSkill",
 			start: "top 7%",
 			endTrigger: "#skills",
-			end: "bottom 32%",
+			end: "80% 78%",
 			pin: ".big-wrap",
 			// pinSpacing: true,
 			// markers: true
@@ -193,18 +193,18 @@ const Newskills = ({ smootherRef }: NewSkillsProps) => {
 		ScrollTrigger.create({
 			invalidateOnRefresh: true,
 			trigger: "#skills",
-			start: "80% 80%",
-			end: "80% 75%",
+			start: "80% 78%",
+			end: "80% 73%",
 			pin: ".pin-wrap",
 			// pinSpacing: true,
-			markers: true
+			// markers: true
 		})
 
 		ScrollTrigger.create({
 			invalidateOnRefresh: true,
 			trigger: "#skills",
-			start: "80% 75%",
-			end: "80% 50%",
+			start: "80% 73%",
+			end: "80% 60%",
 			onEnter: () => {
 				const amount1 = getScrollAmount(firstSkillAnimation.current!);
 				const amount2 = getScrollAmount(secondSkillAnimation.current!);
@@ -233,7 +233,7 @@ const Newskills = ({ smootherRef }: NewSkillsProps) => {
 				gsap.to(firstSkillAnimation.current, { scrollLeft: firstSkillAnimation.current!.scrollLeft + amount1, duration: 1 });
 				gsap.to(secondSkillAnimation.current, { scrollLeft: secondSkillAnimation.current!.scrollLeft - amount2, duration: 1 });
 			},
-			markers: true,
+			// markers: true,
 			pin: ".pin-wrap",
 			pinSpacing: true,
 
@@ -241,11 +241,11 @@ const Newskills = ({ smootherRef }: NewSkillsProps) => {
 		ScrollTrigger.create({
 			invalidateOnRefresh: true,
 			trigger: "#skills",
-			start: "80% 50%",
-			end: "80% 40%",
+			start: "80% 60%",
+			end: "80% 50%",
 			pin: ".pin-wrap",
 			pinSpacing: true,
-			markers: true
+			// markers: true
 		})
 
 

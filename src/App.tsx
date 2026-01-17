@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import About from "./components/About"
 import Home from "./components/Home"
 import gsap from "gsap"
@@ -8,7 +8,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { ScrollSmoother } from "gsap/ScrollSmoother"
 import logosData from "./assets/logosdata"
 import Projects from "./components/Projects"
-// import Menu from "./components/Menu"
+import BlobCanvas from "./components/BlobCanvas"
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother)
 
@@ -17,9 +17,8 @@ function App() {
 	const smootherRef = useRef<any>(null)
 	const containerRef = useRef<HTMLDivElement>(null)
 
-
-
 	useEffect(() => {
+
 		smootherRef.current = ScrollSmoother.create({
 			wrapper: "#smooth-wrapper",
 			content: "#smooth-content",
@@ -55,7 +54,7 @@ function App() {
 		}
 	}, [])
 
-	const imageSelector = ".img"
+	// const imageSelector = ".img"
 
 	// useGSAP(
 	// 	() => {
@@ -112,17 +111,12 @@ function App() {
 			<div
 				id="smooth-wrapper"
 				ref={scrollContainerRef}
-				className="
-    relative
-    w-full
-    h-screen
-    hide-scrollbar
-dynamic-gradient
-opacity-
-
-  ">
+				className=" relative w-full h-screen hide-scrollbar bg-[var(--bgColor)] text-[var(--text)]">
 				<NavBar smootherRef={smootherRef} />
-				<div ref={containerRef} className="absolute  w-screen h-screen ">
+				<div className="">
+					{/* <BlobCanvas /> */}
+				</div>
+				{/* <div ref={containerRef} className="absolute  w-screen h-screen ">
 					{" "}
 					{logosData.map((logo, index) => (
 						<span
@@ -143,10 +137,10 @@ opacity-
 							dangerouslySetInnerHTML={{ __html: logo.svg }}
 						/>
 					))}{" "}
-				</div>
+				</div> */}
 
 				<div id="smooth-content">
-					<Home />
+					<Home smootherRef={smootherRef}/>
 					{/* <Menu/> */}
 
 					<About />
