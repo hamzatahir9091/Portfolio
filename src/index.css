@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-	--bgColor: #233931;
+	--bgColor: #182620;
 	--text: #8fdbc2;
 	--border: #4f9f84;
 }
@@ -88,7 +88,55 @@
 	font-display: swap;
 	font-style: normal;
 }
+@font-face {
+	font-family: Sora-Variable;
+	src: url("/src/assets/fonts/Sora-Variable.ttf");
+	font-weight: 100 800;
+	font-display: swap;
+	font-style: normal;
+}
+@font-face {
+	font-family: Sora-VariableItalic;
+	src: url("/src/assets/fonts/Sora-VariableItalic.ttf") format("truetype");
+	font-weight: 100 800;
+	font-display: swap;
+	font-style: italic;
+}
+@font-face {
+	font-family: Boska-Variable;
+	src: url("/src/assets/fonts/Boska-Variable.ttf");
+	font-weight: 200 900;
+	font-display: swap;
+	font-style: normal;
+}
+@font-face {
+	font-family: Boska-VariableItalic;
+	src: url("/src/assets/fonts/Boska-VariableItalic.ttf") format("truetype");
+	font-weight: 200 900;
+	font-display: swap;
+	font-style: italic;
+}
+@font-face {
+	font-family: Erode-Variable;
+	src: url("/src/assets/fonts/Erode-Variable.ttf");
+	font-weight: 300 700;
+	font-display: swap;
+	font-style: normal;
+}
+@font-face {
+	font-family: Erode-VariableItalic;
+	src: url("/src/assets/fonts/Erode-VariableItalic.ttf") format("truetype");
+	font-weight: 300 700;
+	font-display: swap;
+	font-style: italic;
+}
 
-@theme{
-	--font-clashDisplay : ClashDisplay
+@theme {
+	--font-clashDisplay: ClashDisplay;
+	--font-sora: Sora-Variable;
+	--font-sora-Italic: Sora-VariableItalic;
+	--font-boska: Boska-Variable;
+	--font-boska-Italic: Boska-VariableItalic;
+	--font-erode: Erode-Variable;
+	--font-erode-Italic: Erode-VariableItalic;
 }

@@ -39,7 +39,7 @@ const About = () => {
 		// creating split texts logic
 		const splitlines = SplitText.create(".about-text", {
 			type: "words,chars",
-			linesClass: "m-2 text-[var(--text)]"
+			linesClass: "text-[var(--text)]"
 		})
 
 		splitRef.current = splitlines
@@ -236,7 +236,7 @@ const About = () => {
 			<div id="about" className="font-clashDisplay  text-[var(--text)] h-screen flex flex-col  items-center justify-baseline ">
 				<div className="aboutwrap">
 					<div
-						className="bigAbout text-[6vw] font-extrabold ">
+						className="bigAbout text-[6vw] font-erode font-extrabold ">
 						About
 					</div></div>
 
@@ -258,7 +258,7 @@ const About = () => {
 						<path id="g3" fill="none" stroke="#ffffff" strokeWidth={9} strokeLinecap="round" strokeLinejoin="round" d="M0 0 C3.232 1.147 4.332 2.65 5.871 5.664 C6.526 8.508 6.625 10.833 5.871 13.664 C2.952 17.001 1.164 18.483 -3.254 19.102 C-7.835 18.404 -7.835 18.404 -10.129 16.664 C-12.625 13.087 -13.23 11.398 -12.629 7.039 C-9.888 0.873 -6.567 -1.266 0 0 Z " transform="translate(462.12890625,333.3359375)" ></path>
 					</svg>
 					<div
-						data-lag="0.8" ref={aboutimgRef} className="abtImgWrap bg-[#015A4E] p-[1.67vw] rounded-[5.95vw] shadow-lg shadow-gray-400">
+						data-lag="0.8" ref={aboutimgRef} className="abtImgWrap bg-[#015A4E] p-[1.67vw] rounded-[5.95vw]">
 						<img
 							id="abtimg"
 							className=" rounded-[4.76vw]  w-[30.71vw] h-auto"
@@ -267,11 +267,10 @@ const About = () => {
 						/>
 					</div>
 					<div>
-						<div className="about-text max-w-[45.71vw] leading-relaxed space-y-[1.43vw] text-[1.19vw]">
+						<div className="about-text  font-medium max-w-[45.71vw] leading-[1vw] tracking-wide space-y-[1.43vw] text-[1.3vw]">
 
-							<span className="text-[#008275] text-[2.4vw] font-bold">Hamza</span>
 
-							I’m Hamza — a developer who loves turning ideas into smooth, engaging digital experiences. I thrive on creating interfaces that feel alive, intuitive, and a little magical.
+							I’m <span className="text-[#008275] text-[2.4vw] font-bold">Hamza</span> — a developer who loves turning ideas into smooth, engaging digital experiences. I thrive on creating interfaces that feel alive, intuitive, and a little magical.
 
 							Whether it’s experimenting with animations, building 3D interactions, or polishing every detail of a project, I’m always chasing the next way to make technology feel human.
 
