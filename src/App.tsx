@@ -24,6 +24,8 @@ function App() {
 			content: "#smooth-content",
 			smooth: 1.5,
 			effects: true,
+			normalizeScroll: true,
+			smoothTouch: 1
 		})
 
 		// if i want the app to load at home on refresh
@@ -139,8 +141,8 @@ function App() {
 					))}{" "}
 				</div> */}
 
-				<div id="smooth-content">
-					<Home smootherRef={smootherRef}/>
+				<div id="smooth-content" className="flex flex-col gap-[20vh]">
+					<Home smootherRef={smootherRef} />
 					{/* <Menu/> */}
 
 					<About />

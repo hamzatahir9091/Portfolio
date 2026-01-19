@@ -341,9 +341,6 @@ const Home = ({ smootherRef }: HomeProps) => {
 			// Cleanup on unmount
 			img.removeEventListener("mouseenter", onEnter)
 			img.removeEventListener("mouseleave", onLeave)
-
-			wrapper.removeEventListener("mousemove", onMove)
-			wrapper.removeEventListener("mouseleave", onleave)
 		}
 	},)
 
@@ -373,12 +370,18 @@ const Home = ({ smootherRef }: HomeProps) => {
 							<div className="sectext text-[2vw] flex gap-[0.71vw] justify-center items-center">
 								<span className="lefttag">&lt;&nbsp;</span>
 								<span className="secondline">I'm a Full Stack Developer</span>
-
 								<span className="righttag">&nbsp;/&gt;</span>
 							</div>
-							<svg data-lag="2" id="code3" className="absolute scale-50 opacity-0 top-[70%] left-[15%]" width={"6vw"} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ffffff"><path d="M4 18V14.3C4 13.4716 3.32843 12.8 2.5 12.8H2V11.2H2.5C3.32843 11.2 4 10.5284 4 9.7V6C4 4.34315 5.34315 3 7 3H8V5H7C6.44772 5 6 5.44772 6 6V10.1C6 10.9858 5.42408 11.7372 4.62623 12C5.42408 12.2628 6 13.0142 6 13.9V18C6 18.5523 6.44772 19 7 19H8V21H7C5.34315 21 4 19.6569 4 18ZM20 14.3V18C20 19.6569 18.6569 21 17 21H16V19H17C17.5523 19 18 18.5523 18 18V13.9C18 13.0142 18.5759 12.2628 19.3738 12C18.5759 11.7372 18 10.9858 18 10.1V6C18 5.44772 17.5523 5 17 5H16V3H17C18.6569 3 20 4.34315 20 6V9.7C20 10.5284 20.6716 11.2 21.5 11.2H22V12.8H21.5C20.6716 12.8 20 13.4716 20 14.3Z"></path></svg>
-							<svg data-lag="2" id="code1" className="absolute scale-50 opacity-0 top-[20%] left-[20%]" width={"6vw"} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"   ><path fill="#ffffff" d="M23 12L15.9289 19.0711L14.5147 17.6569L20.1716 12L14.5147 6.34317L15.9289 4.92896L23 12ZM3.82843 12L9.48528 17.6569L8.07107 19.0711L1 12L8.07107 4.92896L9.48528 6.34317L3.82843 12Z"></path></svg>
-							<svg data-lag="2" id="code2" className="absolute scale-50 opacity-0 top-[60%] left-[85%]" width={"6vw"} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ffffff"><path d="M24 12L18.3431 17.6569L16.9289 16.2426L21.1716 12L16.9289 7.75736L18.3431 6.34315L24 12ZM2.82843 12L7.07107 16.2426L5.65685 17.6569L0 12L5.65685 6.34315L7.07107 7.75736L2.82843 12ZM9.78845 21H7.66009L14.2116 3H16.3399L9.78845 21Z"></path></svg>
+							<div data-lag="2" className="absolute top-[70%] left-[15%]">
+								<svg id="code3" className="absolute scale-50 opacity-0 top-[70%] left-[15%]" width={"6vw"} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ffffff"><path d="M4 18V14.3C4 13.4716 3.32843 12.8 2.5 12.8H2V11.2H2.5C3.32843 11.2 4 10.5284 4 9.7V6C4 4.34315 5.34315 3 7 3H8V5H7C6.44772 5 6 5.44772 6 6V10.1C6 10.9858 5.42408 11.7372 4.62623 12C5.42408 12.2628 6 13.0142 6 13.9V18C6 18.5523 6.44772 19 7 19H8V21H7C5.34315 21 4 19.6569 4 18ZM20 14.3V18C20 19.6569 18.6569 21 17 21H16V19H17C17.5523 19 18 18.5523 18 18V13.9C18 13.0142 18.5759 12.2628 19.3738 12C18.5759 11.7372 18 10.9858 18 10.1V6C18 5.44772 17.5523 5 17 5H16V3H17C18.6569 3 20 4.34315 20 6V9.7C20 10.5284 20.6716 11.2 21.5 11.2H22V12.8H21.5C20.6716 12.8 20 13.4716 20 14.3Z"></path></svg>
+							</div>
+							<div data-lag="2" className="absolute top-[20%] left-[20%]">
+								<svg id="code1" className="absolute scale-50 opacity-0 top-[20%] left-[20%]" width={"6vw"} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"   ><path fill="#ffffff" d="M23 12L15.9289 19.0711L14.5147 17.6569L20.1716 12L14.5147 6.34317L15.9289 4.92896L23 12ZM3.82843 12L9.48528 17.6569L8.07107 19.0711L1 12L8.07107 4.92896L9.48528 6.34317L3.82843 12Z"></path></svg>
+							</div>
+							<div data-lag="2" className="absolute  top-[60%] left-[85%]">
+								<svg id="code2" className="absolute scale-50 opacity-0 top-[60%] left-[85%]" width={"6vw"} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ffffff"><path d="M24 12L18.3431 17.6569L16.9289 16.2426L21.1716 12L16.9289 7.75736L18.3431 6.34315L24 12ZM2.82843 12L7.07107 16.2426L5.65685 17.6569L0 12L5.65685 6.34315L7.07107 7.75736L2.82843 12ZM9.78845 21H7.66009L14.2116 3H16.3399L9.78845 21Z"></path></svg>
+							</div>
+
 						</div>
 						<div
 							data-speed="clamp(2)"
