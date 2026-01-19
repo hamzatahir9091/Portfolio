@@ -17,6 +17,641 @@ interface NewSkillsProps {
 const Newskills = ({ smootherRef }: NewSkillsProps) => {
 	const skillsContainer = useRef<HTMLDivElement>(null)
 
+	// useGSAP(() => {
+	// 	if (!smootherRef.current) return
+
+	// 	// creating split texts logic
+	// 	const splitSkill = SplitText.create(".bigSkill", {
+	// 		type: "chars",
+	// 	})
+
+
+	// 	const bigtl = gsap.timeline({
+	// 		scrollTrigger: {
+	// 			invalidateOnRefresh: true,
+	// 			trigger: ".bigSkill",
+	// 			start: "bottom 75%",
+	// 			end: "bottom 55%",
+	// 			pin: true,
+	// 			// pinSpacing: true,
+	// 			scrub: true,
+	// 			// markers: true,
+	// 		}
+	// 	})
+	// 	bigtl.set(splitSkill.chars, { x: "100vw" })
+	// 		.fromTo(splitSkill.chars, { x: "100vw" }, {
+	// 			x: 0,
+	// 			stagger: 0.2,
+	// 		})
+	// 	ScrollTrigger.create({
+	// 		invalidateOnRefresh: true,
+	// 		trigger: ".bigSkill",
+	// 		start: "top 7%",
+	// 		endTrigger: "#skills",
+	// 		end: "80% 78%",
+	// 		pin: ".big-wrap",
+	// 		// pinSpacing: true,
+	// 		// markers: true
+	// 	});
+
+	// 	gsap.to(".bigSkill", {
+	// 		scale: 0.2,
+	// 		scrollTrigger: {
+	// 			invalidateOnRefresh: true,
+	// 			trigger: ".bigSkill",
+	// 			start: "bottom 74%",
+	// 			end: "bottom 15%",
+	// 			scrub: true,
+	// 			// markers: true
+	// 		}
+	// 	})
+
+
+	// 	// icons floating and mouse move code 
+
+	// 	const icons = gsap.utils.toArray<HTMLElement>(".logo")
+
+	// 	// PERFORMANCE HINT
+	// 	gsap.set(icons, {
+	// 		transformOrigin: "center center",
+	// 		willChange: "transform",
+	// 	})
+
+	// 	/* -----------------------------
+	// 	   FLOATING TIMELINE
+	// 	----------------------------- */
+	// 	const floatTl = gsap.timeline({
+	// 		repeat: -1,
+	// 		yoyo: true,
+	// 		defaults: { ease: "sine.inOut" },
+	// 	})
+
+	// 	icons.forEach((icon, i) => {
+
+	// 		icon.addEventListener("mouseenter", () =>
+	// 			gsap.to(icon, { scale: 1.1, duration: 0.3 })
+	// 		)
+	// 		icon.addEventListener("mouseleave", () =>
+	// 			gsap.to(icon, { scale: 1, duration: 0.3 })
+	// 		)
+	// 		floatTl.to(
+	// 			icon,
+	// 			{
+	// 				yPercent: i % 2 === 0 ? -18 : 18,
+	// 				rotate: i % 2 === 0 ? 3 : -3,
+	// 				// duration: 3 + i * 0.2,
+	// 				duration: 2
+	// 			},
+	// 			0
+	// 		)
+	// 	})
+
+	// 	/* -----------------------------
+	// 	   MOUSE PARALLAX
+	// 	----------------------------- */
+	// 	// const movers = icons.map((icon, i) => {
+	// 	// 	const dir = i % 2 === 0 ? 1 : -1
+
+	// 	// 	return {
+	// 	// 		x: gsap.quickTo(icon, "x", {
+	// 	// 			duration: 0.6 + i * 0.05,
+	// 	// 			ease: "power3.out",
+	// 	// 		}),
+	// 	// 		y: gsap.quickTo(icon, "y", {
+	// 	// 			duration: 0.6 + i * 0.05,
+	// 	// 			ease: "power3.out",
+	// 	// 		}),
+	// 	// 		depth: (20 + i * 10) * dir, // 🔥 direction control
+	// 	// 	}
+	// 	// })
+	// 	const movers = icons.map((icon, i) => {
+	// 		const dirX = i % 2 === 0 ? 1 : -1
+	// 		const dirY = i % 3 === 0 ? -1 : 1
+
+	// 		return {
+	// 			x: gsap.quickTo(icon, "x", { duration: 0.6, ease: "power3.out" }),
+	// 			y: gsap.quickTo(icon, "y", { duration: 0.6, ease: "power3.out" }),
+	// 			depthX: (20 + i * 10) * dirX,
+	// 			depthY: (20 + i * 10) * dirY,
+	// 		}
+	// 	})
+
+	// 	const observer = Observer.create({
+	// 		target: window,
+	// 		type: "pointer",
+	// 		onMove(self) {
+	// 			const x = self.x / window.innerWidth - 0.5
+	// 			const y = self.y / window.innerHeight - 0.5
+
+	// 			// movers.forEach((m) => {
+	// 			// 	m.x(x * m.depth)
+	// 			// 	m.y(y * m.depth)
+	// 			// })
+	// 			movers.forEach((m) => {
+	// 				m.x(x * m.depthX)
+	// 				m.y(y * m.depthY)
+	// 			})
+	// 		},
+	// 	})
+
+	// 	// Make motion smoother on low-FPS devices
+	// 	gsap.ticker.lagSmoothing(1000, 16)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	// 	// const panels = gsap.utils.toArray<HTMLElement>(".panel")
+	// 	// const total = panels.length
+
+	// 	// let index = 0
+	// 	// let isCommitting = false
+	// 	// let progress = 0
+
+	// 	// const THRESHOLD = 0.6
+	// 	// const DRAG_SPEED = 0.002
+
+	// 	// // initial state
+	// 	// gsap.set(panels, { opacity: 0, pointerEvents: "none" })
+	// 	// gsap.set(panels[0], { opacity: 1, pointerEvents: "auto" })
+
+	// 	// // pin skills
+	// 	// ScrollTrigger.create({
+	// 	// 	trigger: ".animater",
+	// 	// 	start: "top top",
+	// 	// 	end: "+=400%",
+	// 	// 	pin: ".animater",
+	// 	// })
+
+	// 	// // build transition timelines
+	// 	// const transitions = panels.map((panel, i) => {
+	// 	// 	if (i === total - 1) return null
+
+	// 	// 	const next = panels[i + 1]
+
+	// 	// 	return gsap.timeline({ paused: true })
+	// 	// 		.to(panel, { opacity: 0, duration: 0.3 })
+	// 	// 		.set(next, { opacity: 1, pointerEvents: "auto" })
+	// 	// 		.fromTo(
+	// 	// 			next.querySelectorAll(".frontLogo"),
+	// 	// 			{ y: 60, opacity: 0 },
+	// 	// 			{ y: 0, opacity: 1, stagger: 0.08, duration: 0.6 }
+	// 	// 		)
+	// 	// })
+
+	// 	// const currentTl = () => transitions[index]
+
+	// 	// Observer.create({
+	// 	// 	type: "wheel,touch",
+	// 	// 	wheelSpeed: -1,
+	// 	// 	tolerance: 2,
+	// 	// 	preventDefault: true,
+
+	// 	// 	onChange(self) {
+	// 	// 		if (isCommitting) return
+	// 	// 		const tl = currentTl()
+	// 	// 		if (!tl) return
+
+	// 	// 		progress += self.deltaY * DRAG_SPEED
+	// 	// 		progress = gsap.utils.clamp(0, 1, progress)
+
+	// 	// 		tl.progress(progress)
+
+	// 	// 		// crossed threshold → commit
+	// 	// 		if (progress >= THRESHOLD) {
+	// 	// 			isCommitting = true
+
+	// 	// 			tl.tweenTo(1, {
+	// 	// 				duration: 0.6,
+	// 	// 				ease: "power3.out",
+	// 	// 				onComplete: () => {
+	// 	// 					panels[index].style.pointerEvents = "none"
+	// 	// 					index++
+	// 	// 					progress = 0
+	// 	// 					isCommitting = false
+	// 	// 				},
+	// 	// 			})
+	// 	// 		}
+	// 	// 	},
+
+	// 	// 	onStop() {
+	// 	// 		const tl = currentTl()
+	// 	// 		if (!tl || isCommitting) return
+
+	// 	// 		// not enough intent → snap back
+	// 	// 		if (progress < THRESHOLD) {
+	// 	// 			tl.tweenTo(0, {
+	// 	// 				duration: 0.4,
+	// 	// 				ease: "power3.out",
+	// 	// 			})
+	// 	// 			progress = 0
+	// 	// 		}
+	// 	// 	},
+	// 	// })
+
+
+	// 	// pinnign the animater
+
+	// 	// ScrollTrigger.create({
+	// 	// 	trigger: ".animater",
+	// 	// 	start: "top top",
+	// 	// 	end: "bottom top",
+	// 	// 	pin: ".animater",
+	// 	// 	markers: true,
+	// 	// 	onUpdate: (self) => {
+	// 	// 		const p = self.progress;
+
+	// 	// 		if (p >= 25 && p < 50) {
+	// 	// 			const first = gsap.timeline()
+	// 	// 				.to("#frontCard", {
+	// 	// 					y: "50vw",
+	// 	// 					opacity: 1,
+	// 	// 					pointerEvents: "auto",
+
+	// 	// 				})
+	// 	// 		}
+	// 	// 	}
+	// 	// })
+	// 	// // creating animation timeline for panels
+
+
+	// 	const panels = gsap.utils.toArray<HTMLElement>(".panel")
+	// 	const totalPanels = panels.length // Should be 2 now (Front, Back), but we'll scale this up
+	// 	// NOTE: Your JSX currently has 2 identical panels. 
+	// 	// We assume you will add a 3rd distinct panel.
+	// 	// Let's assume totalPanels = 3 for this example.
+
+	// 	// CRITICAL FIX 1: Set Initial States
+
+	// 	gsap.set(panels.slice(1), { opacity: 0, pointerEvents: "none" });
+	// 	gsap.set(panels[0], { opacity: 1, pointerEvents: "none" });
+
+
+	// 	// 1. Create Individual Transition Timelines (paused)
+
+	// 	const transitionTimelines = panels.map((panel, i) => {
+	// 		// We only need (totalPanels - 1) transitions
+	// 		// if (i === totalPanels - 1) return null;
+
+	// 		const currentPanel = panels[i];
+	// 		const nextPanel = panels[i + 1];
+
+	// 		// Create a PAUSED timeline for the transition from currentPanel to nextPanel
+	// 		// return gsap.timeline({ paused: true })
+	// 		// 	// Outro: Current Panel (Slides up and fades out)
+	// 		// 	.to(currentPanel, {
+	// 		// 		opacity: 0,
+	// 		// 		y: "-50vh",
+	// 		// 		duration: 0.5,
+	// 		// 		ease: "power2.inOut",
+	// 		// 		onComplete: () => gsap.set(currentPanel, { pointerEvents: "none" })
+	// 		// 	}, 0)
+	// 		// 	// Intro: Next Panel (Slides up from below and fades in)
+	// 		// 	.fromTo(nextPanel, {
+	// 		// 		opacity: 0,
+	// 		// 		y: "50vh",
+	// 		// 	}, {
+	// 		// 		opacity: 1,
+	// 		// 		y: 0,
+	// 		// 		duration: 0.5,
+	// 		// 		ease: "power2.inOut",
+	// 		// 		onStart: () => gsap.set(nextPanel, { pointerEvents: "auto" })
+	// 		// 	}, 0); // Start simultaneously at the beginning of the transition timeline
+
+
+	// 		return gsap.timeline({ paused: true })
+
+	// 			/* =====================
+	// 			   OUTRO — Current Panel
+	// 			   ===================== */
+	// 			.to(currentPanel, {
+	// 				opacity: 0,
+	// 				y: "-60vh",
+	// 				scale: 0.96,
+	// 				duration: 0.7,
+	// 				ease: "expo.inOut",
+	// 				onComplete: () =>
+	// 					gsap.set(currentPanel, { pointerEvents: "none" })
+	// 			}, 0)
+
+	// 			/* =====================
+	// 			   INTRO — Next Panel
+	// 			   ===================== */
+	// 			.fromTo(nextPanel,
+	// 				{
+	// 					opacity: 0,
+	// 					y: "60vh",
+	// 					scale: 1.05,
+	// 				},
+	// 				{
+	// 					opacity: 1,
+	// 					y: 0,
+	// 					scale: 1,
+	// 					duration: 0.8,
+	// 					ease: "expo.inOut",
+	// 					onStart: () =>
+	// 						gsap.set(nextPanel, { pointerEvents: "auto" })
+	// 				},
+	// 				0
+	// 			)
+
+	// 			/* =====================
+	// 			   LOGOS — COME IN FIRST
+	// 			   ===================== */
+	// 			.from(
+	// 				".frontlogo",
+	// 				{
+	// 					opacity: 0,
+	// 					y: 40,
+	// 					scale: 0.85,
+	// 					duration: 0.6,
+	// 					ease: "power3.out",
+	// 					stagger: 0.08,
+	// 				},
+	// 				0.25 // logos appear BEFORE text
+	// 			)
+
+	// 			/* =====================
+	// 			   TEXT — COMES AFTER
+	// 			   ===================== */
+	// 			.from(
+	// 				".frontCard",
+	// 				{
+	// 					opacity: 0,
+	// 					y: 30,
+	// 					filter: "blur(6px)",
+	// 					duration: 0.6,
+	// 					ease: "power2.out",
+	// 					stagger: 0.06,
+	// 				},
+	// 				0.45
+	// 			);
+
+	// 	}).filter(tl => tl !== null); // Filter out the null for the last panel
+
+
+	// 	ScrollTrigger.create({
+	// 		trigger: ".animater",
+	// 		start: "top top",
+	// 		// end: `+=${totalScrollDuration}vh`,
+	// 		end: "+=120%",
+	// 		pin: ".pined",
+	// 		markers: true,
+	// 		pinSpacing: true
+	// 	});
+
+
+	// 	// 3. Create a ScrollTrigger for EACH transition to play/reverse its dedicated timeline
+
+	// 	// let counter = 3
+	// 	// transitionTimelines.forEach((tl, i) => {
+	// 	// 	// The start position for each trigger is based on its index.
+	// 	// 	// E.g., for 3 panels (2 transitions):
+	// 	// 	// i=0: start: 100vh (triggers P1->P2)
+	// 	// 	// i=1: start: 200vh (triggers P2->P3)
+	// 	// 	const startPosition = (counter) * 20;
+
+	// 	// 	ScrollTrigger.create({
+	// 	// 		trigger: ".animater",
+	// 	// 		// The trigger point moves down the scrollable distance
+	// 	// 		start: `center ${startPosition}%`,
+	// 	// 		// markers: { startColor: "purple", endColor: "purple", indent: 10 * i },
+
+	// 	// 		// When scroll reaches the start point (scrolling down): Play the transition
+	// 	// 		onEnter: () => tl.play(),
+
+	// 	// 		// When scroll scrolls back past the start point (scrolling up): Reverse the transition
+	// 	// 		onLeaveBack: () => tl.reverse(),
+	// 	// 		markers: true
+	// 	// 	})
+
+	// 	// 	counter--;
+	// 	// });
+
+
+	// 	// gsap.timeline({
+	// 	// 	scrollTrigger: {
+	// 	// 		trigger: ".animater",
+	// 	// 		start: "center 80%",
+	// 	// 		toggleActions: "play reverse reverse reverse",
+	// 	// 		markers: true
+	// 	// 	}
+	// 	// })
+	// 	// .fromTo("#frontPanel", {
+	// 	// 	opacity: 0,
+	// 	// 	y: "50vh",
+	// 	// }, {
+	// 	// 	opacity: 1,
+	// 	// 	y: 0,
+	// 	// 	duration: 0.5,
+	// 	// 	ease: "power2.inOut",
+	// 	// 	onStart: () => gsap.set("#frontPanel", { pointerEvents: "auto" }),
+	// 	// }, 0)
+
+
+	// 	// gsap.timeline({
+	// 	// 	scrollTrigger: {
+	// 	// 		trigger: ".animater",
+	// 	// 		start: "center 60%",
+	// 	// 		toggleActions: "play reverse reverse reverse",
+	// 	// 		markers: true
+	// 	// 	}
+	// 	// })
+	// 	// 	// Outro: Current Panel (Slides up and fades out)
+	// 	// 	.to("#frontPanel", {
+	// 	// 		opacity: 0,
+	// 	// 		y: "-50vh",
+	// 	// 		duration: 0.5,
+	// 	// 		ease: "power2.inOut",
+	// 	// 		onComplete: () => gsap.set("#frontPanel", { pointerEvents: "none" })
+	// 	// 	}, 0)
+	// 	// 	// Intro: Next Panel (Slides up from below and fades in)
+	// 	// 	.fromTo("#backPanel", {
+	// 	// 		opacity: 0,
+	// 	// 		y: "50vh",
+	// 	// 	}, {
+	// 	// 		opacity: 1,
+	// 	// 		y: 0,
+	// 	// 		duration: 0.5,
+	// 	// 		ease: "power2.inOut",
+	// 	// 		onStart: () => gsap.set("#backPanel", { pointerEvents: "auto" })
+	// 	// 	}, ">");
+
+
+	// 	// gsap.timeline({
+	// 	// 	scrollTrigger: {
+	// 	// 		trigger: ".animater",
+	// 	// 		start: "center 40%",
+	// 	// 		toggleActions: "play reverse reverse reverse",
+	// 	// 		markers: true
+	// 	// 	}
+	// 	// })
+
+
+	// 	// 	// Outro: Current Panel (Slides up and fades out)
+	// 	// 	.to("#backPanel", {
+	// 	// 		opacity: 0,
+	// 	// 		y: "-50vh",
+	// 	// 		duration: 0.5,
+	// 	// 		ease: "power2.inOut",
+	// 	// 		onComplete: () => gsap.set("#backPanel", { pointerEvents: "none" })
+	// 	// 	}, 0)
+	// 	// 	// Intro: Next Panel (Slides up from below and fades in)
+	// 	// 	.fromTo("#toolPanel", {
+	// 	// 		opacity: 0,
+	// 	// 		y: "50vh",
+	// 	// 	}, {
+	// 	// 		opacity: 1,
+	// 	// 		y: 0,
+	// 	// 		duration: 0.5,
+	// 	// 		ease: "power2.inOut",
+	// 	// 		onStart: () => gsap.set("#toolPanel", { pointerEvents: "auto" })
+	// 	// 	}, ">");
+
+
+
+	// 	// gsap.timeline({
+	// 	// 	scrollTrigger: {
+	// 	// 		trigger: ".animater",
+	// 	// 		start: "center 20%",
+	// 	// 		toggleActions: "play reverse reverse reverse",
+	// 	// 		markers: true
+	// 	// 	}
+	// 	// })
+	// 	// 	// Outro: Current Panel (Slides up and fades out)
+	// 	// 	.to("#toolPanel", {
+	// 	// 		opacity: 0,
+	// 	// 		y: "-50vh",
+	// 	// 		duration: 0.5,
+	// 	// 		ease: "power2.inOut",
+	// 	// 		onComplete: () => gsap.set("#toolPanel", { pointerEvents: "none" })
+	// 	// 	}, 0)
+
+
+
+
+
+
+	// 	const frontPanelTl = gsap.timeline({
+	// 		scrollTrigger: {
+	// 			trigger: ".animater",
+	// 			start: "top top",
+	// 			toggleActions: "play none none reverse",
+	// 			markers: true
+	// 		}
+	// 	});
+
+	// 	frontPanelTl.fromTo(
+	// 		"#frontPanel",
+	// 		{
+	// 			opacity: 0,
+	// 			y: "50vh",
+	// 		},
+	// 		{
+	// 			opacity: 1,
+	// 			y: 0,
+	// 			duration: 0.6,
+	// 			ease: "expo.inOut",
+	// 			onStart: () =>
+	// 				gsap.set("#frontPanel", { pointerEvents: "auto" }),
+	// 		}
+	// 	)
+	// 		/* =====================
+	// 				   LOGOS — COME IN FIRST
+	// 				   ===================== */
+	// 		.from(
+	// 			".frontlogo",
+	// 			{
+	// 				opacity: 0,
+	// 				y: "50vh",
+	// 				scale: 0.85,
+	// 				duration: 0.6,
+	// 				ease: "power3.out",
+	// 				stagger: 0.08,
+	// 			},
+	// 			0.25 // logos appear BEFORE text
+	// 		)
+
+	// 		/* =====================
+	// 		   TEXT — COMES AFTER
+	// 		   ===================== */
+	// 		.from(
+	// 			".frontCard",
+	// 			{
+	// 				opacity: 0,
+	// 				y: 30,
+	// 				filter: "blur(6px)",
+	// 				duration: 0.6,
+	// 				ease: "power2.out",
+	// 				stagger: 0.06,
+	// 			},
+	// 			0.45
+	// 		);
+
+
+	// 	ScrollTrigger.create({
+	// 		trigger: ".animater",
+	// 		// The trigger point moves down the scrollable distance
+	// 		start: "40% top",
+	// 		// markers: { startColor: "purple", endColor: "purple", indent: 10 * i },
+
+	// 		// When scroll reaches the start point (scrolling down): Play the transition
+	// 		onEnter: () => transitionTimelines[0].play(),
+
+	// 		// When scroll scrolls back past the start point (scrolling up): Reverse the transition
+	// 		onLeaveBack: () => transitionTimelines[0].reverse(),
+	// 		markers: true
+	// 	})
+	// 	ScrollTrigger.create({
+	// 		trigger: ".animater",
+	// 		// The trigger point moves down the scrollable distance
+	// 		start: "80% top",
+	// 		// markers: { startColor: "purple", endColor: "purple", indent: 10 * i },
+
+	// 		// When scroll reaches the start point (scrolling down): Play the transition
+	// 		onEnter: () => transitionTimelines[1].play(),
+
+	// 		// When scroll scrolls back past the start point (scrolling up): Reverse the transition
+	// 		onLeaveBack: () => transitionTimelines[1].reverse(),
+	// 		markers: true
+	// 	})
+	// 	ScrollTrigger.create({
+	// 		trigger: ".animater",
+	// 		// The trigger point moves down the scrollable distance
+	// 		start: "bottom top",
+	// 		// markers: { startColor: "purple", endColor: "purple", indent: 10 * i },
+
+	// 		// When scroll reaches the start point (scrolling down): Play the transition
+	// 		onEnter: () => transitionTimelines[2].play(),
+
+	// 		// When scroll scrolls back past the start point (scrolling up): Reverse the transition
+	// 		onLeaveBack: () => transitionTimelines[2].reverse(),
+	// 		markers: true
+	// 	})
+
+
+	// 	return () => {
+	// 		observer.kill()
+	// 		floatTl.kill()
+	// 	}
+
+	// }, { scope: skillsContainer.current! })
+
+
+
 	useGSAP(() => {
 		if (!smootherRef.current) return
 
@@ -47,8 +682,8 @@ const Newskills = ({ smootherRef }: NewSkillsProps) => {
 			invalidateOnRefresh: true,
 			trigger: ".bigSkill",
 			start: "top 7%",
-			endTrigger: "#skills",
-			end: "80% 78%",
+			endTrigger: "#projeccts",
+			end: "bottom 88%",
 			pin: ".big-wrap",
 			// pinSpacing: true,
 			// markers: true
@@ -97,7 +732,7 @@ const Newskills = ({ smootherRef }: NewSkillsProps) => {
 			floatTl.to(
 				icon,
 				{
-					yPercent: i % 2 === 0 ? -18 : 18,
+					yPercent: i % 2 === 0 ? -14 : 14,
 					rotate: i % 2 === 0 ? 3 : -3,
 					// duration: 3 + i * 0.2,
 					duration: 2
@@ -106,254 +741,117 @@ const Newskills = ({ smootherRef }: NewSkillsProps) => {
 			)
 		})
 
-		/* -----------------------------
-		   MOUSE PARALLAX
-		----------------------------- */
+		// /* -----------------------------
+		//    MOUSE PARALLAX
+		// ----------------------------- */
 		// const movers = icons.map((icon, i) => {
-		// 	const dir = i % 2 === 0 ? 1 : -1
+		// 	const dirX = i % 2 === 0 ? 1 : -1
+		// 	const dirY = i % 3 === 0 ? -1 : 1
 
 		// 	return {
-		// 		x: gsap.quickTo(icon, "x", {
-		// 			duration: 0.6 + i * 0.05,
-		// 			ease: "power3.out",
-		// 		}),
-		// 		y: gsap.quickTo(icon, "y", {
-		// 			duration: 0.6 + i * 0.05,
-		// 			ease: "power3.out",
-		// 		}),
-		// 		depth: (20 + i * 10) * dir, // 🔥 direction control
+		// 		x: gsap.quickTo(icon, "x", { duration: 0.6, ease: "power3.out" }),
+		// 		y: gsap.quickTo(icon, "y", { duration: 0.6, ease: "power3.out" }),
+		// 		depthX: (10 + i * 1) * dirX,
+		// 		depthY: (10 + i * 1) * dirY,
 		// 	}
 		// })
-		const movers = icons.map((icon, i) => {
-			const dirX = i % 2 === 0 ? 1 : -1
-			const dirY = i % 3 === 0 ? -1 : 1
 
-			return {
-				x: gsap.quickTo(icon, "x", { duration: 0.6, ease: "power3.out" }),
-				y: gsap.quickTo(icon, "y", { duration: 0.6, ease: "power3.out" }),
-				depthX: (20 + i * 10) * dirX,
-				depthY: (20 + i * 10) * dirY,
-			}
-		})
+		// const observer = Observer.create({
+		// 	target: window,
+		// 	type: "pointer",
+		// 	onMove(self) {
+		// 		const x = self.x / window.innerWidth - 0.5
+		// 		const y = self.y / window.innerHeight - 0.5
 
-		const observer = Observer.create({
-			target: window,
-			type: "pointer",
-			onMove(self) {
-				const x = self.x / window.innerWidth - 0.5
-				const y = self.y / window.innerHeight - 0.5
-
-				// movers.forEach((m) => {
-				// 	m.x(x * m.depth)
-				// 	m.y(y * m.depth)
-				// })
-				movers.forEach((m) => {
-					m.x(x * m.depthX)
-					m.y(y * m.depthY)
-				})
-			},
-		})
-
-		// Make motion smoother on low-FPS devices
-		gsap.ticker.lagSmoothing(1000, 16)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		// const panels = gsap.utils.toArray<HTMLElement>(".panel")
-		// const total = panels.length
-
-		// let index = 0
-		// let isCommitting = false
-		// let progress = 0
-
-		// const THRESHOLD = 0.6
-		// const DRAG_SPEED = 0.002
-
-		// // initial state
-		// gsap.set(panels, { opacity: 0, pointerEvents: "none" })
-		// gsap.set(panels[0], { opacity: 1, pointerEvents: "auto" })
-
-		// // pin skills
-		// ScrollTrigger.create({
-		// 	trigger: ".animater",
-		// 	start: "top top",
-		// 	end: "+=400%",
-		// 	pin: ".animater",
-		// })
-
-		// // build transition timelines
-		// const transitions = panels.map((panel, i) => {
-		// 	if (i === total - 1) return null
-
-		// 	const next = panels[i + 1]
-
-		// 	return gsap.timeline({ paused: true })
-		// 		.to(panel, { opacity: 0, duration: 0.3 })
-		// 		.set(next, { opacity: 1, pointerEvents: "auto" })
-		// 		.fromTo(
-		// 			next.querySelectorAll(".frontLogo"),
-		// 			{ y: 60, opacity: 0 },
-		// 			{ y: 0, opacity: 1, stagger: 0.08, duration: 0.6 }
-		// 		)
-		// })
-
-		// const currentTl = () => transitions[index]
-
-		// Observer.create({
-		// 	type: "wheel,touch",
-		// 	wheelSpeed: -1,
-		// 	tolerance: 2,
-		// 	preventDefault: true,
-
-		// 	onChange(self) {
-		// 		if (isCommitting) return
-		// 		const tl = currentTl()
-		// 		if (!tl) return
-
-		// 		progress += self.deltaY * DRAG_SPEED
-		// 		progress = gsap.utils.clamp(0, 1, progress)
-
-		// 		tl.progress(progress)
-
-		// 		// crossed threshold → commit
-		// 		if (progress >= THRESHOLD) {
-		// 			isCommitting = true
-
-		// 			tl.tweenTo(1, {
-		// 				duration: 0.6,
-		// 				ease: "power3.out",
-		// 				onComplete: () => {
-		// 					panels[index].style.pointerEvents = "none"
-		// 					index++
-		// 					progress = 0
-		// 					isCommitting = false
-		// 				},
-		// 			})
-		// 		}
-		// 	},
-
-		// 	onStop() {
-		// 		const tl = currentTl()
-		// 		if (!tl || isCommitting) return
-
-		// 		// not enough intent → snap back
-		// 		if (progress < THRESHOLD) {
-		// 			tl.tweenTo(0, {
-		// 				duration: 0.4,
-		// 				ease: "power3.out",
-		// 			})
-		// 			progress = 0
-		// 		}
+		// 		movers.forEach((m) => {
+		// 			m.x(x * m.depthX)
+		// 			m.y(y * m.depthY)
+		// 		})
 		// 	},
 		// })
 
+		// // Make motion smoother on low-FPS devices
+		// gsap.ticker.lagSmoothing(1000, 16)
 
-		// pinnign the animater
 
-		// ScrollTrigger.create({
-		// 	trigger: ".animater",
-		// 	start: "top top",
-		// 	end: "bottom top",
-		// 	pin: ".animater",
-		// 	markers: true,
-		// 	onUpdate: (self) => {
-		// 		const p = self.progress;
-
-		// 		if (p >= 25 && p < 50) {
-		// 			const first = gsap.timeline()
-		// 				.to("#frontCard", {
-		// 					y: "50vw",
-		// 					opacity: 1,
-		// 					pointerEvents: "auto",
-
-		// 				})
-		// 		}
-		// 	}
-		// })
-		// // creating animation timeline for panels
-
+		/* -----------------------------
+		   PANEL TRANSITIONS (NEW LOGIC)
+		----------------------------- */
 
 		const panels = gsap.utils.toArray<HTMLElement>(".panel")
-		const totalPanels = panels.length // Should be 2 now (Front, Back), but we'll scale this up
-		// NOTE: Your JSX currently has 2 identical panels. 
-		// We assume you will add a 3rd distinct panel.
-		// Let's assume totalPanels = 3 for this example.
+		// Assuming we have 3 panels: Front, Back, Tools
+		const panelData = [
+			{ id: "frontPanel", logoClass: ".frontLogo" },
+			{ id: "backPanel", logoClass: ".backLogo" },
+			{ id: "toolPanel", logoClass: ".toolLogo" }
+		];
 
 		// CRITICAL FIX 1: Set Initial States
-
 		gsap.set(panels.slice(1), { opacity: 0, pointerEvents: "none" });
 		gsap.set(panels[0], { opacity: 1, pointerEvents: "none" });
 
 
 		// 1. Create Individual Transition Timelines (paused)
-
 		const transitionTimelines = panels.map((panel, i) => {
-			// We only need (totalPanels - 1) transitions
-			// if (i === totalPanels - 1) return null;
-
 			const currentPanel = panels[i];
 			const nextPanel = panels[i + 1];
 
-			// Create a PAUSED timeline for the transition from currentPanel to nextPanel
-			// return gsap.timeline({ paused: true })
-			// 	// Outro: Current Panel (Slides up and fades out)
-			// 	.to(currentPanel, {
-			// 		opacity: 0,
-			// 		y: "-50vh",
-			// 		duration: 0.5,
-			// 		ease: "power2.inOut",
-			// 		onComplete: () => gsap.set(currentPanel, { pointerEvents: "none" })
-			// 	}, 0)
-			// 	// Intro: Next Panel (Slides up from below and fades in)
-			// 	.fromTo(nextPanel, {
-			// 		opacity: 0,
-			// 		y: "50vh",
-			// 	}, {
-			// 		opacity: 1,
-			// 		y: 0,
-			// 		duration: 0.5,
-			// 		ease: "power2.inOut",
-			// 		onStart: () => gsap.set(nextPanel, { pointerEvents: "auto" })
-			// 	}, 0); // Start simultaneously at the beginning of the transition timeline
+			if (!nextPanel) return null; // Last panel has no transition out
+
+			// 1a. Determine specific selectors for the current panel's content
+			const currentPanelData = panelData.find(d => d.id === currentPanel.id);
+			const currentLogoSelector = `#${currentPanel.id} ${currentPanelData?.logoClass || '.logo'}`;
+			const currentCardSelector = `#${currentPanel.id} #frontCard`; // Card has generic ID, scoped by Panel ID
+
+			// 1b. Determine specific selectors for the next panel's content
+			const nextPanelData = panelData.find(d => d.id === nextPanel.id);
+			const nextLogoSelector = `#${nextPanel.id} ${nextPanelData?.logoClass || '.logo'}`;
+			const nextCardSelector = `#${nextPanel.id} #frontCard`;
 
 
 			return gsap.timeline({ paused: true })
 
 				/* =====================
-				   OUTRO — Current Panel
+				   OUTRO — Current Panel Content (Staggered Out First)
+				   ===================== */
+				// Outro: Text out first, then logos
+				.to(currentCardSelector, {
+					opacity: 0,
+					y: "-30vw",
+					filter: "blur(6px)",
+					duration: 0.6,
+					ease: "power2.in",
+					// stagger: -0.05, // Reverse stagger
+				}, 0)
+				.to(currentLogoSelector, {
+					opacity: 0,
+					y: "-50vh",
+					scale: 0.85,
+					duration: 0.8,
+					ease: "power3.in",
+					stagger: 0.08,
+				}, 0.3) // Start logos shortly after text
+
+				/* =====================
+				   OUTRO — Current Panel Container (Final fade/slide out)
 				   ===================== */
 				.to(currentPanel, {
 					opacity: 0,
-					y: "-60vh",
+
 					scale: 0.96,
 					duration: 0.7,
 					ease: "expo.inOut",
 					onComplete: () =>
 						gsap.set(currentPanel, { pointerEvents: "none" })
-				}, 0)
+				}, 0.3) // Start container fade after content started to move out
 
 				/* =====================
-				   INTRO — Next Panel
+				   INTRO — Next Panel Container (Fade/slide in)
 				   ===================== */
 				.fromTo(nextPanel,
 					{
 						opacity: 0,
-						y: "60vh",
+						// y: "60vh",
 						scale: 1.05,
 					},
 					{
@@ -365,192 +863,58 @@ const Newskills = ({ smootherRef }: NewSkillsProps) => {
 						onStart: () =>
 							gsap.set(nextPanel, { pointerEvents: "auto" })
 					},
-					0
+					0.3 // Start with container intro, slightly after outro started
 				)
 
 				/* =====================
-				   LOGOS — COME IN FIRST
+				   INTRO — Next Panel Content (Staggered In - Logos First)
 				   ===================== */
 				.from(
-					".frontlogo",
+					nextLogoSelector,
 					{
 						opacity: 0,
-						y: 40,
+						y: "50vh", // 
 						scale: 0.85,
 						duration: 0.6,
 						ease: "power3.out",
 						stagger: 0.08,
 					},
-					0.25 // logos appear BEFORE text
+					1.2// Logos appear AFTER the container has started its move
 				)
-
-				/* =====================
-				   TEXT — COMES AFTER
-				   ===================== */
 				.from(
-					".frontCard",
+					nextCardSelector,
 					{
 						opacity: 0,
-						y: 30,
+						y: "30vw",
 						filter: "blur(6px)",
 						duration: 0.6,
 						ease: "power2.out",
 						stagger: 0.06,
 					},
-					0.45
+					0.8 // Text comes AFTER logos, matching the request
 				);
 
 		}).filter(tl => tl !== null); // Filter out the null for the last panel
 
 
+		// Pin the container
 		ScrollTrigger.create({
 			trigger: ".animater",
 			start: "top top",
-			// end: `+=${totalScrollDuration}vh`,
-			end: "+=120%",
+			end: "+=120%", // Keep this or adjust based on your content/needs
 			pin: ".pined",
-			markers: true,
+			// markers: true,
 			pinSpacing: true
 		});
 
 
-		// 3. Create a ScrollTrigger for EACH transition to play/reverse its dedicated timeline
-
-		// let counter = 3
-		// transitionTimelines.forEach((tl, i) => {
-		// 	// The start position for each trigger is based on its index.
-		// 	// E.g., for 3 panels (2 transitions):
-		// 	// i=0: start: 100vh (triggers P1->P2)
-		// 	// i=1: start: 200vh (triggers P2->P3)
-		// 	const startPosition = (counter) * 20;
-
-		// 	ScrollTrigger.create({
-		// 		trigger: ".animater",
-		// 		// The trigger point moves down the scrollable distance
-		// 		start: `center ${startPosition}%`,
-		// 		// markers: { startColor: "purple", endColor: "purple", indent: 10 * i },
-
-		// 		// When scroll reaches the start point (scrolling down): Play the transition
-		// 		onEnter: () => tl.play(),
-
-		// 		// When scroll scrolls back past the start point (scrolling up): Reverse the transition
-		// 		onLeaveBack: () => tl.reverse(),
-		// 		markers: true
-		// 	})
-
-		// 	counter--;
-		// });
-
-
-		// gsap.timeline({
-		// 	scrollTrigger: {
-		// 		trigger: ".animater",
-		// 		start: "center 80%",
-		// 		toggleActions: "play reverse reverse reverse",
-		// 		markers: true
-		// 	}
-		// })
-		// .fromTo("#frontPanel", {
-		// 	opacity: 0,
-		// 	y: "50vh",
-		// }, {
-		// 	opacity: 1,
-		// 	y: 0,
-		// 	duration: 0.5,
-		// 	ease: "power2.inOut",
-		// 	onStart: () => gsap.set("#frontPanel", { pointerEvents: "auto" }),
-		// }, 0)
-
-
-		// gsap.timeline({
-		// 	scrollTrigger: {
-		// 		trigger: ".animater",
-		// 		start: "center 60%",
-		// 		toggleActions: "play reverse reverse reverse",
-		// 		markers: true
-		// 	}
-		// })
-		// 	// Outro: Current Panel (Slides up and fades out)
-		// 	.to("#frontPanel", {
-		// 		opacity: 0,
-		// 		y: "-50vh",
-		// 		duration: 0.5,
-		// 		ease: "power2.inOut",
-		// 		onComplete: () => gsap.set("#frontPanel", { pointerEvents: "none" })
-		// 	}, 0)
-		// 	// Intro: Next Panel (Slides up from below and fades in)
-		// 	.fromTo("#backPanel", {
-		// 		opacity: 0,
-		// 		y: "50vh",
-		// 	}, {
-		// 		opacity: 1,
-		// 		y: 0,
-		// 		duration: 0.5,
-		// 		ease: "power2.inOut",
-		// 		onStart: () => gsap.set("#backPanel", { pointerEvents: "auto" })
-		// 	}, ">");
-
-
-		// gsap.timeline({
-		// 	scrollTrigger: {
-		// 		trigger: ".animater",
-		// 		start: "center 40%",
-		// 		toggleActions: "play reverse reverse reverse",
-		// 		markers: true
-		// 	}
-		// })
-
-
-		// 	// Outro: Current Panel (Slides up and fades out)
-		// 	.to("#backPanel", {
-		// 		opacity: 0,
-		// 		y: "-50vh",
-		// 		duration: 0.5,
-		// 		ease: "power2.inOut",
-		// 		onComplete: () => gsap.set("#backPanel", { pointerEvents: "none" })
-		// 	}, 0)
-		// 	// Intro: Next Panel (Slides up from below and fades in)
-		// 	.fromTo("#toolPanel", {
-		// 		opacity: 0,
-		// 		y: "50vh",
-		// 	}, {
-		// 		opacity: 1,
-		// 		y: 0,
-		// 		duration: 0.5,
-		// 		ease: "power2.inOut",
-		// 		onStart: () => gsap.set("#toolPanel", { pointerEvents: "auto" })
-		// 	}, ">");
-
-
-
-		// gsap.timeline({
-		// 	scrollTrigger: {
-		// 		trigger: ".animater",
-		// 		start: "center 20%",
-		// 		toggleActions: "play reverse reverse reverse",
-		// 		markers: true
-		// 	}
-		// })
-		// 	// Outro: Current Panel (Slides up and fades out)
-		// 	.to("#toolPanel", {
-		// 		opacity: 0,
-		// 		y: "-50vh",
-		// 		duration: 0.5,
-		// 		ease: "power2.inOut",
-		// 		onComplete: () => gsap.set("#toolPanel", { pointerEvents: "none" })
-		// 	}, 0)
-
-
-
-
-
-
+		// Initial Front Panel Load Animation (Improved with specific selectors)
 		const frontPanelTl = gsap.timeline({
 			scrollTrigger: {
 				trigger: ".animater",
-				start: "top top",
+				start: "top 20%",
 				toggleActions: "play none none reverse",
-				markers: true
+				// markers: true
 			}
 		});
 
@@ -570,64 +934,63 @@ const Newskills = ({ smootherRef }: NewSkillsProps) => {
 			}
 		)
 			/* =====================
-					   LOGOS — COME IN FIRST
+					   LOGOS — COME IN FIRST (Front Panel)
 					   ===================== */
 			.from(
-				".frontlogo",
+				"#frontPanel .frontLogo", // <-- Specific Selector
 				{
 					opacity: 0,
-					y: "50vh",
+					y: "50vh", // Keeping the original logo animation for first panel
 					scale: 0.85,
 					duration: 0.6,
 					ease: "power3.out",
 					stagger: 0.08,
 				},
-				0.25 // logos appear BEFORE text
+				0.3 // logos appear BEFORE text
 			)
 
 			/* =====================
-			   TEXT — COMES AFTER
+			   TEXT — COMES AFTER (Front Panel)
 			   ===================== */
 			.from(
-				".frontCard",
+				"#frontPanel #frontCard", // <-- Specific Selector
 				{
 					opacity: 0,
-					y: 30,
+					y: "30vw",
 					filter: "blur(6px)",
 					duration: 0.6,
 					ease: "power2.out",
-					stagger: 0.06,
+					// stagger: 0.06,
 				},
-				0.45
+				0
 			);
 
 
+		// ScrollTrigger for each transition (P1->P2, P2->P3)
 		ScrollTrigger.create({
 			trigger: ".animater",
-			// The trigger point moves down the scrollable distance
 			start: "40% top",
-			// markers: { startColor: "purple", endColor: "purple", indent: 10 * i },
-
-			// When scroll reaches the start point (scrolling down): Play the transition
+			// markers: { startColor: "purple", endColor: "purple", indent: 10 * 0 },
 			onEnter: () => transitionTimelines[0].play(),
-
-			// When scroll scrolls back past the start point (scrolling up): Reverse the transition
 			onLeaveBack: () => transitionTimelines[0].reverse(),
-			markers: true
+			// markers: true
 		})
 		ScrollTrigger.create({
 			trigger: ".animater",
-			// The trigger point moves down the scrollable distance
 			start: "80% top",
-			// markers: { startColor: "purple", endColor: "purple", indent: 10 * i },
-
-			// When scroll reaches the start point (scrolling down): Play the transition
+			// markers: { startColor: "purple", endColor: "purple", indent: 10 * 1 },
 			onEnter: () => transitionTimelines[1].play(),
-
-			// When scroll scrolls back past the start point (scrolling up): Reverse the transition
 			onLeaveBack: () => transitionTimelines[1].reverse(),
-			markers: true
+			// markers: true
 		})
+		// Assuming you have a total of 3 panels (2 transitions), the last trigger will be for the outro of the last panel, which is not defined in the current transitionTimelines array.
+		// Since transitionTimelines.length is 2 (P1->P2, P2->P3), the third trigger should probably be a placeholder or adjust your `end` of the ScrollTrigger pinning the `.animater` container.
+
+		// I will remove the third ScrollTrigger, as transitionTimelines[2] doesn't exist.
+		// The `frontPanelTl` will handle the P1 reverse.
+		// The two `ScrollTrigger.create` calls above handle the P1->P2 and P2->P3 transitions.
+
+
 		ScrollTrigger.create({
 			trigger: ".animater",
 			// The trigger point moves down the scrollable distance
@@ -643,13 +1006,13 @@ const Newskills = ({ smootherRef }: NewSkillsProps) => {
 		})
 
 
+
 		return () => {
-			observer.kill()
+			// observer.kill()
 			floatTl.kill()
 		}
 
 	}, { scope: skillsContainer.current! })
-
 
 	return (
 		<div ref={skillsContainer} id="skills" className="">
@@ -676,7 +1039,7 @@ const Newskills = ({ smootherRef }: NewSkillsProps) => {
 								</div>
 							</div>
 
-							<div data-lag="2" id="html" className="frontLogo logo absolute top-[15%] left-[15%] "><svg width={"6vw"} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ffffff"><path d="M12 18.1778L16.6192 16.9222L17.2434 10.1444H9.02648L8.82219 7.88889H17.4477L17.6747 5.67778H6.32535L6.96091 12.3556H14.7806L14.5195 15.2222L12 15.8889L9.48045 15.2222L9.32156 13.3778H7.0517L7.38083 16.9222L12 18.1778ZM3 2H21L19.377 20L12 22L4.62295 20L3 2Z"></path></svg></div>
+							<div id="html" className="frontLogo logo absolute top-[15%] left-[15%] "><svg width={"6vw"} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ffffff"><path d="M12 18.1778L16.6192 16.9222L17.2434 10.1444H9.02648L8.82219 7.88889H17.4477L17.6747 5.67778H6.32535L6.96091 12.3556H14.7806L14.5195 15.2222L12 15.8889L9.48045 15.2222L9.32156 13.3778H7.0517L7.38083 16.9222L12 18.1778ZM3 2H21L19.377 20L12 22L4.62295 20L3 2Z"></path></svg></div>
 							<div id="css" className="frontLogo logo absolute top-[45%] left-[10%] "><svg width={"6vw"} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ffffff"><path d="M5.00006 3L4.35006 6.34H17.9401L17.5001 8.5H3.92006L3.26006 11.83H16.8501L16.0901 15.64L10.6101 17.45L5.86006 15.64L6.19006 14H2.85006L2.06006 18L9.91006 21L18.9601 18L20.1601 11.97L20.4001 10.76L21.9401 3H5.00006Z"></path></svg></div>
 							<div id="tailwind" className="frontLogo logo absolute top-[77%] left-[47%] "><svg width={"6vw"} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ffffff"><path d="M11.9996 4.85999C8.82628 4.85999 6.84294 6.44665 6.04961 9.61999C7.23961 8.03332 8.62794 7.43832 10.2146 7.83499C11.12 8.06109 11.7666 8.71757 12.4835 9.44545C13.6507 10.6295 15.0004 12 17.9496 12C21.1229 12 23.1063 10.4133 23.8996 7.23998C22.7096 8.82665 21.3213 9.42165 19.7346 9.02499C18.8292 8.79889 18.1827 8.1424 17.4657 7.41452C16.2995 6.23047 14.9498 4.85999 11.9996 4.85999ZM6.04961 12C2.87628 12 0.892943 13.5867 0.0996094 16.76C1.28961 15.1733 2.67794 14.5783 4.26461 14.975C5.17 15.2011 5.81657 15.8576 6.53354 16.5855C7.70073 17.7695 9.05039 19.14 11.9996 19.14C15.1729 19.14 17.1563 17.5533 17.9496 14.38C16.7596 15.9667 15.3713 16.5617 13.7846 16.165C12.8792 15.9389 12.2326 15.2824 11.5157 14.5545C10.3495 13.3705 8.99982 12 6.04961 12Z"></path></svg></div>
 							<div id="js" className="frontLogo logo absolute top-[35%] left-[82%] "><svg width={"6vw"} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ffffff"><path d="M6 3C4.34315 3 3 4.34315 3 6V18C3 19.6569 4.34315 21 6 21H18C19.6569 21 21 19.6569 21 18V6C21 4.34315 19.6569 3 18 3H6ZM13.3344 16.055C14.0531 16.6343 14.7717 16.9203 15.4904 16.913C15.9304 16.913 16.2677 16.8323 16.5024 16.671C16.7297 16.517 16.8434 16.297 16.8434 16.011C16.8434 15.7177 16.7297 15.4683 16.5024 15.263C16.2677 15.0577 15.8241 14.8523 15.1714 14.647C14.3867 14.4197 13.7817 14.1263 13.3564 13.767C12.9384 13.4077 12.7257 12.9053 12.7184 12.26C12.7184 11.6513 12.9824 11.1417 13.5104 10.731C14.0237 10.3203 14.6801 10.115 15.4794 10.115C16.5941 10.115 17.4887 10.3863 18.1634 10.929L17.3934 12.128C17.1221 11.9153 16.8104 11.7613 16.4584 11.666C16.1064 11.556 15.7911 11.501 15.5124 11.501C15.1311 11.501 14.8267 11.5707 14.5994 11.71C14.3721 11.8493 14.2584 12.0327 14.2584 12.26C14.2584 12.5093 14.3977 12.722 14.6764 12.898C14.9551 13.0667 15.4317 13.2537 16.1064 13.459C16.9204 13.701 17.4997 14.0237 17.8444 14.427C18.1891 14.8303 18.3614 15.3437 18.3614 15.967C18.3614 16.605 18.1157 17.155 17.6244 17.617C17.1404 18.0717 16.4364 18.31 15.5124 18.332C14.3024 18.332 13.2904 17.969 12.4764 17.243L13.3344 16.055ZM7.80405 16.693C8.03872 16.8397 8.32105 16.913 8.65105 16.913C8.99572 16.913 9.28172 16.814 9.50905 16.616C9.73639 16.4107 9.85005 16.055 9.85005 15.549V10.247H11.3351V15.835C11.3131 16.7003 11.0637 17.3237 10.5871 17.705C10.3157 17.9323 10.0187 18.0937 9.69605 18.189C9.37339 18.2843 9.06172 18.332 8.76105 18.332C8.21105 18.332 7.72339 18.2367 7.29805 18.046C6.84339 17.8407 6.46205 17.4777 6.15405 16.957L7.18805 16.11C7.37872 16.3667 7.58405 16.561 7.80405 16.693Z"></path></svg></div>
@@ -1117,12 +1480,11 @@ const Newskills = ({ smootherRef }: NewSkillsProps) => {
 								</div>
 
 								<div className="text-[1.3vw] text-center">
-									<p>Turning ideas into interactive, animated, and responsive UIs with </p>
-									<p>HTML, CSS, JavaScript, React, and GSAP.</p>
+									<p>Mastering the stack with Git, Tailwind, Vite, Figma, and more—from code to design, I keep it smooth and polished.</p>
 								</div>
 							</div>
 
-							<div id="vercel" className="toolLogo logo absolute top-[15%] left-[15%] "><svg width="6vw" height="800px" viewBox="0 -17 256 256" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid">
+							<div id="vercel" className="toolLogo logo absolute top-[15%] left-[15%] "><svg width="6vw" viewBox="0 -17 256 256" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid">
 								<g>
 									<polygon fill="#ffffff" points="128 0 256 221.705007 0 221.705007">
 

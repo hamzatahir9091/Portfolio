@@ -68,7 +68,7 @@ const NavBar = ({ smootherRef }: NavBarProps) => {
 
 	return (
 		<div className="">
-			<div className="nav text-[#015A4E]  w-screen h-[4.29vw] mt-[1.19vw] flex gap-[2.38vw] justify-center items-center text-[1.19vw] fixed z-100">
+			<div className="nav text-[var(--text)]  w-screen h-[4.29vw] mt-[1.19vw] flex gap-[2.38vw] justify-center items-center text-[1.19vw] fixed z-100">
 				<div
 					id="innerNav"
 					className="relative flex gap-[2.86vw] px-[1.43vw] py-[0.95vw] rounded-[100px] backdrop-blur-md ">
@@ -77,11 +77,11 @@ const NavBar = ({ smootherRef }: NavBarProps) => {
 						id="bubble"
 						className="w-[4.76vw] h-[2.86vw] glass absolute top-[0.36vw] left-[0.71vw] rounded-full"></div>
 
-					<span onClick={() => handleClick("#home")}>Home</span>
-					<span onClick={() => handleClick("#about")}>About</span>
-					<span onClick={() => handleClick("#skills")}>Skills</span>
-					<span onClick={() => handleClick("#projects")}>Project</span>
-					<span onClick={() => handleClick("#skills")}>Contacts</span>
+					<span className="cursor-pointer" onClick={() => handleClick("#home")}>Home</span>
+					<span className="cursor-pointer" onClick={() => handleClick("#about")}>About</span>
+					<span className="cursor-pointer" onClick={() => handleClick("#skills")}>Skills</span>
+					<span className="cursor-pointer" onClick={() => handleClick("#projects")}>Project</span>
+					<span className="cursor-pointer" onClick={() => handleClick("#skills")}>Contacts</span>
 					{/* <span ><DarkModeToggle /></span> */}
 				</div>
 			</div>
