@@ -1,7 +1,7 @@
 import { useGSAP } from "@gsap/react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-import DarkModeToggle from "./DarkModeToggle"
+
 
 
 
@@ -82,7 +82,7 @@ const NavBar = ({ smootherRef }: NavBarProps) => {
 					<span className="cursor-pointer" onClick={() => handleClick("#skills")}>Skills</span>
 					<span className="cursor-pointer" onClick={() => handleClick("#projects")}>Project</span>
 					<span className="cursor-pointer" onClick={() => handleClick("#skills")}>Contacts</span>
-					{/* <span ><DarkModeToggle /></span> */}
+
 				</div>
 			</div>
 		</div>

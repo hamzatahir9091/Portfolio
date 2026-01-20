@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef } from "react"
 import About from "./components/About"
 import Home from "./components/Home"
 import gsap from "gsap"
@@ -6,9 +6,9 @@ import NavBar from "./components/NavBar"
 import Newskills from "./components/Newskills"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { ScrollSmoother } from "gsap/ScrollSmoother"
-import logosData from "./assets/logosdata"
+
 import Projects from "./components/Projects"
-import BlobCanvas from "./components/BlobCanvas"
+
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother)
 
