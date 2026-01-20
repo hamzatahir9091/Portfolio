@@ -18,6 +18,7 @@ function App() {
 	const containerRef = useRef<HTMLDivElement>(null)
 
 	useEffect(() => {
+		if (typeof window === "undefined") return
 
 		smootherRef.current = ScrollSmoother.create({
 			wrapper: "#smooth-wrapper",
