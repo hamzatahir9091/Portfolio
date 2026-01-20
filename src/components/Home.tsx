@@ -436,7 +436,7 @@ const Home = ({ smootherRef }: HomeProps) => {
 								className="imgWrapper bg-[#015A4E]  p-[1.67vw] rounded-[5vw] ">
 								<img
 									className="me rounded-[5vw] w-[35.71vw] h-auto"
-									src="src/assets/home.png"
+									src="/home.png"
 									alt="me waving at u pal"
 								/>
 							</div>
