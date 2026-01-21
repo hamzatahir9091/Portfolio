@@ -16,8 +16,14 @@ const Newskills = ({ smootherRef }: NewSkillsProps) => {
 	useGSAP(() => {
 		console.log("--- Newskills: useGSAP Started Running ---");
 
-		if (typeof window === "undefined") return
-		if (!smootherRef.current) return
+		if (typeof window === "undefined") {
+			console.log("window returned");
+			return
+		}
+		if (!smootherRef.current) {
+			console.log("smoother returned ");
+			return
+		}
 
 		// creating split texts logic
 		const splitSkill = SplitText.create(".bigSkill", {
