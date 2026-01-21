@@ -22,6 +22,14 @@ const Newskills = ({ smootherRef }: NewSkillsProps) => {
 			type: "chars",
 		})
 
+		// 2. Add a safeguard: If splitting failed (e.g., element was empty), stop the logic
+		if (splitSkill.chars.length === 0) {
+			// You might want to log this on the client side for debugging
+			console.error("GSAP SplitText failed to split characters. Aborting animation setup.")
+			return
+		}
+
+
 
 		const bigtl = gsap.timeline({
 			scrollTrigger: {

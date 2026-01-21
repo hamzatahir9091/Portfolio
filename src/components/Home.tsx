@@ -3,8 +3,7 @@ import gsap from "gsap"
 import { SplitText } from "gsap/SplitText"
 import { MorphSVGPlugin } from "gsap/MorphSVGPlugin"
 import DrawSVGPlugin from "gsap/DrawSVGPlugin"
-import { ScrollTrigger } from "gsap/ScrollTrigger"
-import { Observer } from "gsap/Observer"
+
 import { useRef } from "react"
 
 gsap.registerPlugin(SplitText, DrawSVGPlugin, MorphSVGPlugin, Observer)
