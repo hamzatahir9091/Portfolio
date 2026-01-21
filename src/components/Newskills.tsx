@@ -326,6 +326,9 @@ const Newskills = ({ smootherRef }: NewSkillsProps) => {
 		})
 
 
+		ScrollTrigger.refresh();
+
+
 		return () => {
 			// observer.kill()
 			floatTl.kill()
