@@ -14,6 +14,8 @@ const Newskills = ({ smootherRef }: NewSkillsProps) => {
 	const skillsContainer = useRef<HTMLDivElement>(null)
 
 	useGSAP(() => {
+		console.log("--- Newskills: useGSAP Started Running ---");
+
 		if (typeof window === "undefined") return
 		if (!smootherRef.current) return
 
@@ -326,37 +328,27 @@ const Newskills = ({ smootherRef }: NewSkillsProps) => {
 		})
 
 
-		gsap.delayedCall(1.5, () => {
-			console.log("Forcing a delayed ScrollTrigger.refresh()");
-			ScrollTrigger.refresh();
-			// This second call is often needed to correctly position pinning on first load
-			// if you are using ScrollSmoother.
-			if (smootherRef.current) {
-				smootherRef.current.scrollTop(0); // Optional: Jumps to top
-				smootherRef.current.scrollTo(0); // Optional: Re-aligns scroll position
-			}
-			ScrollTrigger.refresh();
-		});
 
-
-		const onLoad = () => {
-			// CHECK YOUR BROWSER CONSOLE ON THE LIVE VERCEL APP FOR THIS MESSAGE
-			console.log("--- Newskills: Window LOAD event fired. Forcing ScrollTrigger.refresh() ---");
+		const timeoutId = setTimeout(() => {
+			console.log("--- Newskills: Running Delayed Refresh (100ms) ---");
 			ScrollTrigger.refresh();
-			// A second refresh is often required for pinned elements/smoother to settle
-			ScrollTrigger.refresh();
-		};
+		}, 100);
 
-		// Listen for the complete page load
-		window.addEventListener('load', onLoad);
+		// Wait longer (1 second) for potentially slow images/SVGs to finish rendering
+		const timeoutIdLong = setTimeout(() => {
+			console.log("--- Newskills: Running LONG Delayed Refresh (1000ms) ---");
+			ScrollTrigger.refresh();
+		}, 1000);
 
 
 		return () => {
+			console.log("--- Newskills: useGSAP Cleanup Running ---");
+
 			// observer.kill()
 			floatTl.kill()
 		}
 
-	}, { scope: skillsContainer.current! })
+	}, { scope: skillsContainer.current!, dependencies: [smootherRef.current] })
 
 	return (
 		<div ref={skillsContainer} id="skills" className="">
