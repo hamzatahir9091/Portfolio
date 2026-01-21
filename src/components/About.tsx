@@ -65,7 +65,7 @@ const About = () => {
 				end: "bottom top",
 				// scrub: true,
 				// pin:true,
-				markers: true,
+				// markers: true,
 				toggleActions:"play none none reverse"
 
 			}

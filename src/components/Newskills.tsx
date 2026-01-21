@@ -40,7 +40,7 @@ const Newskills = ({ smootherRef }: NewSkillsProps) => {
 				pin: true,
 				// pinSpacing: true,
 				scrub: true,
-				// markers: true,
+				markers: true,
 			}
 		})
 		bigtl.set(splitSkill.chars, { x: "100vw" })
@@ -56,7 +56,7 @@ const Newskills = ({ smootherRef }: NewSkillsProps) => {
 			end: "bottom 88%",
 			pin: ".big-wrap",
 			// pinSpacing: true,
-			// markers: true
+			markers: true
 		});
 
 		gsap.to(".bigSkill", {
@@ -326,7 +326,17 @@ const Newskills = ({ smootherRef }: NewSkillsProps) => {
 		})
 
 
-		ScrollTrigger.refresh();
+		gsap.delayedCall(1.5, () => {
+			console.log("Forcing a delayed ScrollTrigger.refresh()");
+			ScrollTrigger.refresh();
+			// This second call is often needed to correctly position pinning on first load
+			// if you are using ScrollSmoother.
+			if (smootherRef.current) {
+				smootherRef.current.scrollTop(0); // Optional: Jumps to top
+				smootherRef.current.scrollTo(0); // Optional: Re-aligns scroll position
+			}
+			ScrollTrigger.refresh();
+		});
 
 
 		return () => {
