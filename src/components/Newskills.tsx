@@ -339,6 +339,18 @@ const Newskills = ({ smootherRef }: NewSkillsProps) => {
 		});
 
 
+		const onLoad = () => {
+			// CHECK YOUR BROWSER CONSOLE ON THE LIVE VERCEL APP FOR THIS MESSAGE
+			console.log("--- Newskills: Window LOAD event fired. Forcing ScrollTrigger.refresh() ---");
+			ScrollTrigger.refresh();
+			// A second refresh is often required for pinned elements/smoother to settle
+			ScrollTrigger.refresh();
+		};
+
+		// Listen for the complete page load
+		window.addEventListener('load', onLoad);
+
+
 		return () => {
 			// observer.kill()
 			floatTl.kill()
