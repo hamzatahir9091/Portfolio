@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react"
+import { useEffect, useLayoutEffect, useRef } from "react"
 import About from "./components/About"
 import Home from "./components/Home"
 import gsap from "gsap"
@@ -8,6 +8,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { ScrollSmoother } from "gsap/ScrollSmoother"
 
 import Projects from "./components/Projects"
+import { useGSAP } from "@gsap/react"
 
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother)
@@ -18,7 +19,7 @@ function App() {
 
 	
 
-	useEffect(() => {
+	useLayoutEffect(() => {
 		if (typeof window === "undefined") return
 
 		// const wrapper = document.getElementById("smooth-wrapper");
@@ -32,9 +33,9 @@ function App() {
 		smootherRef.current = ScrollSmoother.create({
 			wrapper: "#smooth-wrapper",
 			content: "#smooth-content",
-			smooth: 1.5,
+			smooth: 1,
 			effects: true,
-			normalizeScroll: false,
+			// normalizeScroll: false,
 			smoothTouch: 1
 		})
 
@@ -59,7 +60,9 @@ function App() {
 			smootherRef.current.kill()
 			window.removeEventListener("resize", handleResize)
 		}
-	}, [])
+	},{ scope:scrollContainerRef,dependencies:[]})
+
+
 
 	// const imageSelector = ".img"
 
