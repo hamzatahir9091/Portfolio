@@ -1,4 +1,4 @@
-import {   useRef } from "react"
+import { useEffect, useRef } from "react"
 import About from "./components/About"
 import Home from "./components/Home"
 import gsap from "gsap"
@@ -8,7 +8,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { ScrollSmoother } from "gsap/ScrollSmoother"
 
 import Projects from "./components/Projects"
-import { useGSAP } from "@gsap/react"
 
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother)
@@ -17,17 +16,18 @@ function App() {
 	const scrollContainerRef = useRef<HTMLDivElement>(null)
 	const smootherRef = useRef<any>(null)
 
+	
 
-	useGSAP(() => {
+	useEffect(() => {
 		if (typeof window === "undefined") return
 
-		const wrapper = document.getElementById("smooth-wrapper");
-		const content = document.getElementById("smooth-content");
+		// const wrapper = document.getElementById("smooth-wrapper");
+		// const content = document.getElementById("smooth-content");
 
-		if (!wrapper || !content) {
-			console.warn("GSAP initialization skipped: Smooth wrapper or content not found.");
-			return;
-		}
+		// if (!wrapper || !content) {
+		//   console.warn("GSAP initialization skipped: Smooth wrapper or content not found.");
+		//   return;
+		// }
 
 		smootherRef.current = ScrollSmoother.create({
 			wrapper: "#smooth-wrapper",
@@ -56,10 +56,10 @@ function App() {
 		return () => {
 			// clearTimeout(timeoutId); // Cleanup
 
-			smootherRef.current?.kill()
+			smootherRef.current.kill()
 			window.removeEventListener("resize", handleResize)
 		}
-	}, { scope: scrollContainerRef, dependencies: [] })
+	}, [])
 
 	// const imageSelector = ".img"
 
@@ -121,9 +121,34 @@ function App() {
 				className=" relative w-full h-screen hide-scrollbar bg-[var(--bgColor)] text-[var(--text)]">
 				<NavBar smootherRef={smootherRef} />
 				<div className="">
+					{/* <BlobCanvas /> */}
 				</div>
+				{/* <div ref={containerRef} className="absolute  w-screen h-screen ">
+					{" "}
+					{logosData.map((logo, index) => (
+						<span
+							className="img"
+							key={index}
+							style={{
+								position: "absolute",
+								// filter:"blur(2px)",
+								// backdropFilter:"blur(3px)",
+								left: logo.left,
+								top: logo.top,
+								transform: "translate(-50%, -50%)",
+								width: 40,
+								height: 40,
+
+								willChange: "transform",
+							}}
+							dangerouslySetInnerHTML={{ __html: logo.svg }}
+						/>
+					))}{" "}
+				</div> */}
+
 				<div id="smooth-content" className="flex flex-col gap-[20vh]">
 					<Home smootherRef={smootherRef} />
+					{/* <Menu/> */}
 
 					<About />
 
