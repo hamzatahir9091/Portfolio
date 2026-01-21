@@ -6,7 +6,7 @@ import DrawSVGPlugin from "gsap/DrawSVGPlugin"
 
 import { useRef } from "react"
 
-gsap.registerPlugin(SplitText, DrawSVGPlugin, MorphSVGPlugin, Observer)
+gsap.registerPlugin(SplitText, DrawSVGPlugin, MorphSVGPlugin)
 
 interface HomeProps {
 	smootherRef: React.RefObject<any>
