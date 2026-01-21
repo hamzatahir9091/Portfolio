@@ -20,10 +20,6 @@ const Newskills = ({ smootherRef }: NewSkillsProps) => {
 			console.log("window returned");
 			return
 		}
-		if (!smootherRef.current) {
-			console.log("smoother returned ");
-			return
-		}
 
 		// creating split texts logic
 		const splitSkill = SplitText.create(".bigSkill", {
