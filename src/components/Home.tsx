@@ -361,11 +361,15 @@ const Home = ({ smootherRef }: HomeProps) => {
 	return (
 		<>
 			<div id="home" ref={homeRef} className="[perspective:1200px]">
+
 				<div
 					id="homeInside"
-					className={`homeScreen min-h-screen min-w-screen flex flex-col justify-center items-center transition-all duration-300 ease-in-out  relative `}>
+					className={`homeScreen  min-h-screen min-w-screen flex flex-col justify-center items-center transition-all duration-300 ease-in-out  relative `}>
+
+
 					<div className="  mainContent font-clashDisplay min-w-screen flex flex-row justify-center items-center ">
 						<div className="relative  home-text text-[var(--text)]  w-1/2 h-screen flex flex-col justify-center items-center  ">
+
 							<div className="mainText text-[4vw] flex gap-[0.71vw] justify-center items-baseline">
 								<span className="firstline">
 
@@ -387,6 +391,7 @@ const Home = ({ smootherRef }: HomeProps) => {
 								</span>
 
 							</div>
+
 
 							<div className="sectext text-[2vw] flex gap-[0.71vw] justify-center items-center">
 								<span className="lefttag">&lt;&nbsp;</span>

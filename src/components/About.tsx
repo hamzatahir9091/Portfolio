@@ -233,7 +233,7 @@ const About = () => {
 
 	return (
 		<>
-			<div id="about" className="font-clashDisplay  text-[var(--text)] h-screen flex flex-col  items-center justify-baseline ">
+			<div id="about" className="font-clashDisplay text-[var(--text)] h-screen flex flex-col  items-center justify-baseline ">
 				<div className="aboutwrap">
 					<div
 						className="bigAbout text-[6vw] font-erode font-extrabold ">

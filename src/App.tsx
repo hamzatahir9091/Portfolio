@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef } from "react"
+import {  useLayoutEffect, useRef } from "react"
 import About from "./components/About"
 import Home from "./components/Home"
 import gsap from "gsap"
@@ -8,7 +8,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { ScrollSmoother } from "gsap/ScrollSmoother"
 
 import Projects from "./components/Projects"
-import { useGSAP } from "@gsap/react"
+
 
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother)
@@ -17,7 +17,7 @@ function App() {
 	const scrollContainerRef = useRef<HTMLDivElement>(null)
 	const smootherRef = useRef<any>(null)
 
-	
+
 
 	useLayoutEffect(() => {
 		if (typeof window === "undefined") return
@@ -60,7 +60,7 @@ function App() {
 			smootherRef.current.kill()
 			window.removeEventListener("resize", handleResize)
 		}
-	},{ scope:scrollContainerRef,dependencies:[]})
+	}, [])
 
 
 
