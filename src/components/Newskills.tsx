@@ -60,17 +60,17 @@ const Newskills = ({ smootherRef }: NewSkillsProps) => {
 		// Defer the heavy initialization to improve TBT
 		loadTimeoutRef.current = window.setTimeout(setupSplitTextAndAnimations, 500);
 
-		ScrollTrigger.create({
-			invalidateOnRefresh: true,
-			trigger: ".big-wrap",
-			start: "top top",
-			// endTrigger: "#projects",
-			endTrigger: ".bigSkill",
-			end: "bottom top",
-			pin: ".bigSkill",
-			// pinSpacing: true,
-			// markers: true
-		});
+		// ScrollTrigger.create({
+		// 	invalidateOnRefresh: true,
+		// 	trigger: ".big-wrap",
+		// 	start: "top top",
+		// 	// endTrigger: "#projects",
+		// 	endTrigger: ".bigSkill",
+		// 	end: "bottom top",
+		// 	pin: ".bigSkill",
+		// 	// pinSpacing: true,
+		// 	// markers: true
+		// });
 
 		gsap.to(".bigSkill", {
 			scale: 0.2,
@@ -80,7 +80,7 @@ const Newskills = ({ smootherRef }: NewSkillsProps) => {
 				start: "top 30%",
 				end: "bottom top",
 				scrub: true,
-				// markers: true
+				markers: true
 			}
 		})
 
