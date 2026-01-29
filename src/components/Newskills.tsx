@@ -39,14 +39,13 @@ const Newskills = ({ smootherRef }: NewSkillsProps) => {
 			// 3. Run pinned animation using the split instance
 			const bigtl = gsap.timeline({
 				scrollTrigger: {
-					// We keep invalidateOnRefresh: true for responsive layout changes
 					invalidateOnRefresh: true,
 					trigger: ".bigSkill",
 					start: "top 52%",
 					end: "bottom 30%",
 					pin: true,
 					scrub: true,
-					// markers: true
+					markers: true
 				}
 			})
 			// Use the instance's characters directly
@@ -80,7 +79,7 @@ const Newskills = ({ smootherRef }: NewSkillsProps) => {
 				start: "top 30%",
 				end: "bottom top",
 				scrub: true,
-				markers: true
+				// markers: true
 			}
 		})
 
