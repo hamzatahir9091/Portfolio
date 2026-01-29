@@ -13,7 +13,7 @@ const NavBar = ({ smootherRef }: NavBarProps) => {
 
 
 	useGSAP(() => {
-		if (!smootherRef.current) return
+
 
 		gsap.fromTo(
 			"#innerNav",
@@ -32,7 +32,7 @@ const NavBar = ({ smootherRef }: NavBarProps) => {
 					start: "10% top",
 					end: "40% top",
 					scrub: true,
-					//   markers: true
+					// markers: true 
 				}
 			}
 		)
