@@ -4,6 +4,7 @@
 	--bgColor: #182620;
 	--text: #8fdbc2;
 	--border: #4f9f84;
+	--highlight: #008275;
 }
 
 /* global.css or component CSS */
@@ -67,6 +68,17 @@
 	);
 	background-size: 200% 200%; /* make gradient large so it can move */
 	animation: gradientShift 10s ease infinite; /* slow smooth animation */
+}
+
+/* for selcction text */
+::selection {
+  background: var(--text);
+  color: var(--bgColor);
+}
+
+::-moz-selection {
+  background: var(--text);
+  color: var(--bgColor);
 }
 
 /* hidding the scrollbar of skills animations  */

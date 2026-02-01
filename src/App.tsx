@@ -1,4 +1,4 @@
-import {  useLayoutEffect, useRef } from "react"
+import { useLayoutEffect, useRef } from "react"
 import About from "./components/About"
 import Home from "./components/Home"
 import gsap from "gsap"
@@ -8,6 +8,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { ScrollSmoother } from "gsap/ScrollSmoother"
 
 import Projects from "./components/Projects"
+import Contacts from "./components/Contacts"
 
 
 
@@ -17,7 +18,9 @@ function App() {
 	const scrollContainerRef = useRef<HTMLDivElement>(null)
 	const smootherRef = useRef<any>(null)
 
-
+	ScrollTrigger.defaults({
+		scroller: smootherRef.current?.content() || window
+	})
 
 	useLayoutEffect(() => {
 		if (typeof window === "undefined") return
@@ -123,6 +126,7 @@ function App() {
 				ref={scrollContainerRef}
 				className=" relative w-full h-screen hide-scrollbar bg-[var(--bgColor)] text-[var(--text)]">
 				<NavBar smootherRef={smootherRef} />
+
 				<div className="">
 					{/* <BlobCanvas /> */}
 				</div>
@@ -155,9 +159,11 @@ function App() {
 
 					<About />
 
+					<Projects />
+
 					<Newskills smootherRef={smootherRef} />
 
-					<Projects />
+					<Contacts />
 				</div>
 			</div>
 		</>

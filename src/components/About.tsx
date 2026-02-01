@@ -98,20 +98,22 @@ const About = () => {
 		const onEnter = () => aboutTl.play()
 		const onLeave = () => aboutTl.reverse()
 
-		ScrollTrigger.create({
-			invalidateOnRefresh: true,
-			trigger: ".bigAbout",
-			start: "center 20%",
-			end: "center 10%",
-			pin: ".aboutwrap",
-			// pinSpacing: true,
-			// markers: true
-		});
-		gsap.from(".bigAbout", {
-			scale: 5,
+		// ScrollTrigger.create({
+		// 	invalidateOnRefresh: true,
+		// 	trigger: ".bigAbout",
+		// 	start: "center 20%",
+		// 	end: "center 10%",
+		// 	pin: ".aboutwrap",
+		// 	// pinSpacing: true,
+		// 	// markers: true
+		// });
+
+		// animation for scaling out projectt heading
+		gsap.to(".bigAbout", {
+			scale: 1,
 			scrollTrigger: {
-				trigger: ".bigAbout",
-				start: "top 42%",
+				trigger: ".aboutwrap",
+				start: "top 60%",
 				end: "center top",
 				scrub: true,
 				// markers: true
@@ -234,11 +236,13 @@ const About = () => {
 	return (
 		<>
 			<div id="about" className="font-clashDisplay text-[var(--text)] h-screen flex flex-col  items-center justify-baseline ">
-				<div className="aboutwrap">
+
+				<div className="aboutwrap flex items-center justify-center h-[30vh]">
 					<div
-						className="bigAbout text-[6vw] font-erode font-extrabold ">
+						className="bigAbout text-[6vw] transform scale-[5] font-erode font-extrabold ">
 						About
-					</div></div>
+					</div>
+				</div>
 
 				<div className="relative content  w-screen h-[70%] text-[var(--text)] flex justify-center items-center gap-[4.76vw]  ">
 

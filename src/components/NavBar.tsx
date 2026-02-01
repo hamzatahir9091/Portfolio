@@ -3,12 +3,11 @@ import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 
 
-
-
-
 interface NavBarProps {
 	smootherRef: React.RefObject<any>
 }
+
+
 const NavBar = ({ smootherRef }: NavBarProps) => {
 
 
@@ -53,10 +52,30 @@ const NavBar = ({ smootherRef }: NavBarProps) => {
 			trigger: "#skills",
 			start: "top center",
 			onEnter: () => {
-				gsap.to("#bubble", { left: "12.50vw", duration: 0.4, ease: "power2.out" })
+				gsap.to("#bubble", { left: "19vw", duration: 0.4, ease: "power2.out" })
+			},
+			onLeaveBack: () => {
+				gsap.to("#bubble", { left: "12.90vw", duration: 0.4 })
+			},
+		})
+		ScrollTrigger.create({
+			trigger: "#projects",
+			start: "top center",
+			onEnter: () => {
+				gsap.to("#bubble", { left: "12.90vw", duration: 0.4, ease: "power2.out" })
 			},
 			onLeaveBack: () => {
 				gsap.to("#bubble", { left: "6.71vw", duration: 0.4 })
+			},
+		})
+		ScrollTrigger.create({
+			trigger: "#contacts",
+			start: "top center",
+			onEnter: () => {
+				gsap.to("#bubble", { left: "25.2vw", duration: 0.4, ease: "power2.out" })
+			},
+			onLeaveBack: () => {
+				gsap.to("#bubble", { left: "19vw", duration: 0.4 })
 			},
 		})
 	})
@@ -73,15 +92,16 @@ const NavBar = ({ smootherRef }: NavBarProps) => {
 					id="innerNav"
 					className="relative flex gap-[2.86vw] px-[1.43vw] py-[0.95vw] rounded-[100px] backdrop-blur-md ">
 					{/* bubble */}
-					<div
-						id="bubble"
-						className="w-[4.76vw] h-[2.86vw] glass absolute top-[0.36vw] left-[0.71vw] rounded-full"></div>
+					<div id="bubble" className="w-[4.76vw] h-[2.86vw] glass absolute top-[0.36vw] left-[0.71vw] rounded-full"></div>
+					{/* <div id="bubble" className="w-[4.76vw] h-[2.86vw] glass absolute top-[0.36vw] left-[25.2vw] rounded-full"></div> */}
+
+
 
 					<span className="cursor-pointer" onClick={() => handleClick("#home")}>Home</span>
 					<span className="cursor-pointer" onClick={() => handleClick("#about")}>About</span>
-					<span className="cursor-pointer" onClick={() => handleClick("#skills")}>Skills</span>
 					<span className="cursor-pointer" onClick={() => handleClick("#projects")}>Project</span>
-					<span className="cursor-pointer" onClick={() => handleClick("#skills")}>Contacts</span>
+					<span className="cursor-pointer" onClick={() => handleClick("#skills")}>Skills</span>
+					<span className="cursor-pointer" onClick={() => handleClick("#contacts")}>Contact</span>
 
 				</div>
 			</div>
