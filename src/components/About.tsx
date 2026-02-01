@@ -9,7 +9,7 @@ import { useRef } from "react"
 gsap.registerPlugin(SplitText)
 
 const About = () => {
-	const splitRef = useRef<SplitText | null>(null);
+
 	const aboutimgRef = useRef<HTMLDivElement>(null)
 	const loadTimeoutRef = useRef<number | null>(null);
 
@@ -17,86 +17,62 @@ const About = () => {
 
 	useGSAP(() => {
 
-		let splitlines: SplitText | null = null;
 		const aboutimg = aboutimgRef.current!;
 		const aboutTl = gsap.timeline({ paused: true });
 
 
-		const setupSplitText = () => {
-
-
-			splitlines = SplitText.create(".about-text", {
-				type: "words,chars",
-				linesClass: "text-[var(--text)]"
-			});
-
-			runSplitTextAnimation(splitlines);
-		};
-
-		const runSplitTextAnimation = (splitTextInstance: SplitText) => {
-			gsap.from(splitTextInstance.chars, {
-				opacity: 0,
-				stagger: 0.05,
-				lineHeight: "0.1em",
-				scrollTrigger: {
-					trigger: ".bigAbout",
-					start: "bottom 70%",
-					end: "bottom 50%",
-					scrub: true,
-				}
-			});
 
 
 
 
 
-			if (!aboutimg) return;
+
+		if (!aboutimg) return;
 
 
-			aboutTl.from("#mug", { yPercent: 20, opacity: 0, duration: 0.2, scale: 0.6 })
-			aboutTl.from("#glasses", { yPercent: 20, opacity: 0, duration: 0.2, scale: 0.6 }, "<")
+		aboutTl.from("#mug", { yPercent: 20, opacity: 0, duration: 0.2, scale: 0.6 })
+		aboutTl.from("#glasses", { yPercent: 20, opacity: 0, duration: 0.2, scale: 0.6 }, "<")
 
-			aboutTl.fromTo(
-				"#g1",
+		aboutTl.fromTo(
+			"#g1",
+			{ drawSVG: "100% 100%", opacity: 1, },
+			{ duration: 0.5, drawSVG: "0% 100%", opacity: 1 }
+			, ">")
+		aboutTl.fromTo(
+			"#g2",
+			{ drawSVG: "100% 100%", opacity: 1, },
+			{ duration: 0.5, drawSVG: "0% 100%", opacity: 1 }
+			, "<")
+		aboutTl.fromTo(
+			"#g3",
+			{ drawSVG: "100% 100%", opacity: 1, },
+			{ duration: 0.5, drawSVG: "0% 100%", opacity: 1 }
+			, "<")
+			.fromTo(
+				"#m3",
 				{ drawSVG: "100% 100%", opacity: 1, },
-				{ duration: 0.5, drawSVG: "0% 100%", opacity: 1 }
-				, ">")
-			aboutTl.fromTo(
-				"#g2",
+				{ duration: 0.9, drawSVG: "0% 100%", opacity: 1 }
+				, "<")
+			.fromTo(
+				"#m1",
+				{ drawSVG: "100% 100%", opacity: 1, },
+				{ duration: 0.9, drawSVG: "0% 100%", opacity: 1 }
+				, "<")
+			.fromTo(
+				"#m2",
 				{ drawSVG: "100% 100%", opacity: 1, },
 				{ duration: 0.5, drawSVG: "0% 100%", opacity: 1 }
 				, "<")
-			aboutTl.fromTo(
-				"#g3",
-				{ drawSVG: "100% 100%", opacity: 1, },
-				{ duration: 0.5, drawSVG: "0% 100%", opacity: 1 }
-				, "<")
-				.fromTo(
-					"#m3",
-					{ drawSVG: "100% 100%", opacity: 1, },
-					{ duration: 0.9, drawSVG: "0% 100%", opacity: 1 }
-					, "<")
-				.fromTo(
-					"#m1",
-					{ drawSVG: "100% 100%", opacity: 1, },
-					{ duration: 0.9, drawSVG: "0% 100%", opacity: 1 }
-					, "<")
-				.fromTo(
-					"#m2",
-					{ drawSVG: "100% 100%", opacity: 1, },
-					{ duration: 0.5, drawSVG: "0% 100%", opacity: 1 }
-					, "<")
 
 
-			aboutimg.addEventListener("mouseenter", onEnter)
-			aboutimg.addEventListener("mouseleave", onLeave)
 
 
-		};
 
-		loadTimeoutRef.current = window.setTimeout(setupSplitText, 500);
 		const onEnter = () => aboutTl.play()
 		const onLeave = () => aboutTl.reverse()
+
+		aboutimg.addEventListener("mouseenter", onEnter)
+		aboutimg.addEventListener("mouseleave", onLeave)
 
 		// ScrollTrigger.create({
 		// 	invalidateOnRefresh: true,
@@ -123,22 +99,31 @@ const About = () => {
 		const imgtl = gsap.timeline({
 			scrollTrigger: {
 				trigger: ".bigAbout",
-				start: "bottom 70%",
+				start: "bottom 65%",
 				end: "bottom top",
 				// scrub: true,
 				// pin:true,
 				// markers: true,
-				toggleActions: "play none none reverse"
+				toggleActions: "play none none none"
 
 			}
 		})
 
-		imgtl.fromTo(".abtImgWrap", { opacity: 0 }, {
-			opacity: 1,
+		imgtl.fromTo(".abtImgWrap", { x: -1000 }, {
+			x: 0,
 
-			ease: "power3.inOut",
-			duration: 0.5,
+			ease: "power3.out",
+			duration: 0.7,
 
+		})
+
+		gsap.from(".about-text", {
+			opacity: 0,
+			scrollTrigger: {
+				trigger: ".bigAbout",
+				start: "bottom 65%",
+				end: "bottom top",
+			}
 		})
 
 
@@ -151,86 +136,12 @@ const About = () => {
 				window.clearTimeout(loadTimeoutRef.current);
 			}
 
-			if (splitlines) {
-				splitlines.revert();
-			}
 
 			aboutimg.removeEventListener("mouseenter", onEnter)
 			aboutimg.removeEventListener("mouseleave", onLeave)
 		}
 
 	})
-
-	let tickerFn: gsap.TickerCallback | null = null;
-
-
-	const explodeText = () => {
-		if (!splitRef.current) return;
-
-		// 🔥 kill previous explosion
-		if (tickerFn) gsap.ticker.remove(tickerFn);
-
-		const words = splitRef.current.words;
-
-		const vw = window.innerWidth;
-		const vh = window.innerHeight;
-
-		const friction = 0.97;
-		const bounce = 0.85;
-
-		const particles = words.map((el) => {
-			gsap.set(el, { x: 0, y: 0 }); // RESET transforms
-
-			const rect = el.getBoundingClientRect();
-
-			return {
-				el,
-				w: rect.width,
-				h: rect.height,
-				x: 0,
-				y: 0,
-
-				r: 0,                               // rotation
-				vr: gsap.utils.random(-8, 8),
-				vx: gsap.utils.random(-70, 70),
-				vy: gsap.utils.random(-70, 70),
-				setX: gsap.quickSetter(el, "x", "px"),
-				setY: gsap.quickSetter(el, "y", "px"),
-				setR: gsap.quickSetter(el, "rotation", "deg"),
-
-			};
-		});
-
-		tickerFn = () => {
-			particles.forEach((p) => {
-				p.x += p.vx;
-				p.y += p.vy;
-				p.r += p.vr;
-
-
-				p.vx *= friction;
-				p.vy *= friction;
-				p.vr *= friction; // 🔥 rotational friction
-
-
-				// screen bounds check (transform space)
-				if (p.x <= -vw / 2 || p.x + p.w >= vw / 2) {
-					p.vx *= -bounce;
-				}
-
-				if (p.y <= -vh / 2 || p.y + p.h >= vh / 2) {
-					p.vy *= -bounce;
-				}
-
-				p.setX(p.x);
-				p.setY(p.y);
-				p.setR(p.r);
-
-			});
-		};
-
-		gsap.ticker.add(tickerFn);
-	};
 
 
 	return (
@@ -273,7 +184,7 @@ const About = () => {
 						/>
 					</div>
 					<div>
-						<div className="about-text  font-medium max-w-[45.71vw] leading-[1vw] tracking-wide space-y-[1.43vw] text-[1.3vw]">
+						<div className="about-text  font-medium max-w-[45.71vw]  tracking-wider space-y-[1.43vw] text-[1.3vw]">
 
 
 							I’m <span className="text-[#008275] text-[2.4vw] font-bold">Hamza</span> — a developer who loves turning ideas into smooth, engaging digital experiences. I thrive on creating interfaces that feel alive, intuitive, and a little magical.
@@ -285,12 +196,7 @@ const About = () => {
 						</div>
 					</div>
 				</div>
-				<button
-					onClick={explodeText}
-					className="mt-4 px-4 py-2 bg-red-500 text-white rounded"
-				>
-					EXPLODE TEXT
-				</button>
+
 			</div>
 		</>
 	)
