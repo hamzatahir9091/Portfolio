@@ -515,6 +515,7 @@ const Home = ({ smootherRef }: HomeProps) => {
 					</div>
 				</div>
 			</div>
+
 		</>
 	)
 }
