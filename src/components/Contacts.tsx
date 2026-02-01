@@ -81,7 +81,7 @@ const Contacts = () => {
                 className="w-full mt-10 rounded-lg focus:outline-none appearance-none placeholder-[var(--text)]   focus:placeholder:opacity-50   autofill:bg-transparent autofill:text-[var(--text)] autofill:shadow-[0_0_0px_1000px_transparent_inset] transition-all duration-300"
               />
               <div className="h-0.5 w-[80%] bg-[var(--text)]"></div>
-              
+
 
               <textarea
                 name="message"
@@ -93,11 +93,12 @@ const Contacts = () => {
               <div className="h-0.5 w-[80%] bg-[var(--text)]"></div>
 
 
-              <button
-                type="submit"
-                className="w-full bg-indigo-600 py-3 rounded-lg"
-              >
-                Send Message
+              <button className="relative overflow-auto font-medium text-[18px] tracking-[0.05em] rounded-[0.8em] cursor-pointer border-2 border-[var(--text)] bg-[var(--text)] active:scale-[0.1] transition-transform duration-200 group">
+                <span className=" relative z-10 inline-flex items-center px-[1.05em] py-[0.8em] transition-colors duration-400 group-hover:text-[var(--bgColor)]">
+                  Send Message
+                </span>
+                {/* Animated skewed strip */}
+                <span className="absolute top-0 left-[-10%] w-[120%] h-full bg-[var(--bgColor)] z-0 [transform:skew(30deg)] transition-[transform] duration-400 [transition-timing-function:cubic-bezier(0.3,1,0.8,1)]  group-hover:[transform:skew(30deg)_translateX(100%)] "></span>
               </button>
             </form>
 

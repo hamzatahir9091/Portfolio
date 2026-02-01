@@ -1,6 +1,5 @@
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
-import Temp from "../components/Temp"
 
 
 const Projects = () => {
@@ -30,10 +29,6 @@ const Projects = () => {
                     </div>
                 </div>
 
-                <div className='relative'>
-                    <Temp />
-                </div>
-                
                 <div id='projectBox' className='bg-fuchsi-300 flex flex-col gap-26' >
 
                     <div id="" className='project w-full h-[60vh]  flex justify-center'>
@@ -50,12 +45,20 @@ const Projects = () => {
 
                             <div className="buttons  flex gap-[4vw]">
 
-                                <button className="border-2 border-amber-200 px-6 py-3 rounded-xl font-medium">
-                                    Live App
+                                <button className="relative overflow-auto font-medium text-[18px] tracking-[0.05em] rounded-[0.8em] cursor-pointer border-2 border-[var(--text)] bg-[var(--text)] active:scale-[0.1] transition-transform duration-200 group">
+                                    <span className=" relative z-10 inline-flex items-center px-[1.05em] py-[0.8em] transition-colors duration-400 group-hover:text-[var(--bgColor)]">
+                                        Live App
+                                    </span>
+                                    {/* Animated skewed strip */}
+                                    <span className="absolute top-0 left-[-10%] w-[120%] h-full bg-[var(--bgColor)] z-0 [transform:skew(30deg)] transition-[transform] duration-400 [transition-timing-function:cubic-bezier(0.3,1,0.8,1)]  group-hover:[transform:skew(30deg)_translateX(100%)] "></span>
                                 </button>
 
-                                <button className="border-2 glass border-amber-200 px-6 py-3 rounded-xl font-medium">
-                                    More to Know
+                                <button className="relative overflow-auto font-medium text-[18px] tracking-[0.05em] rounded-[0.8em] cursor-pointer border-2 border-[var(--text)] bg-[var(--text)] active:scale-[0.1] transition-transform duration-200 group">
+                                    <span className=" relative z-10 inline-flex items-center px-[1.05em] py-[0.8em] transition-colors duration-400 group-hover:text-[var(--bgColor)]">
+                                        More to Know
+                                    </span>
+                                    {/* Animated skewed strip */}
+                                    <span className="absolute top-0 left-[-10%] w-[120%] h-full bg-[var(--bgColor)] z-0 [transform:skew(30deg)] transition-[transform] duration-400 [transition-timing-function:cubic-bezier(0.3,1,0.8,1)]  group-hover:[transform:skew(30deg)_translateX(100%)] "></span>
                                 </button>
 
                             </div>
@@ -85,16 +88,23 @@ const Projects = () => {
                                 </p>
                             </div>
 
-                            <div className="buttons flex gap-[4vw]">
+                            <div className="buttons  flex gap-[4vw]">
 
-                                <button className="px-6 py-2 rounded-lg font-semibold bg-gradient-to-r from-indigo-600 to-cyan-400 text-white hover:scale-105 hover:shadow-lg transition-all duration-300">
-                                    Button 1
+                                <button className="relative overflow-auto font-medium text-[18px] tracking-[0.05em] rounded-[0.8em] cursor-pointer border-2 border-[var(--text)] bg-[var(--text)] active:scale-[0.1] transition-transform duration-200 group">
+                                    <span className=" relative z-10 inline-flex items-center px-[1.05em] py-[0.8em] transition-colors duration-400 group-hover:text-[var(--bgColor)]">
+                                        Live App
+                                    </span>
+                                    {/* Animated skewed strip */}
+                                    <span className="absolute top-0 left-[-10%] w-[120%] h-full bg-[var(--bgColor)] z-0 [transform:skew(30deg)] transition-[transform] duration-400 [transition-timing-function:cubic-bezier(0.3,1,0.8,1)]  group-hover:[transform:skew(30deg)_translateX(100%)] "></span>
                                 </button>
 
-                                <button className="px-6 py-2 rounded-lg font-semibold border-2 border-indigo-600 text-indigo-600 hover:bg-indigo-600 hover:text-white hover:scale-105 transition-all duration-300">
-                                    Button 2
+                                <button className="relative overflow-auto font-medium text-[18px] tracking-[0.05em] rounded-[0.8em] cursor-pointer border-2 border-[var(--text)] bg-[var(--text)] active:scale-[0.1] transition-transform duration-200 group">
+                                    <span className=" relative z-10 inline-flex items-center px-[1.05em] py-[0.8em] transition-colors duration-400 group-hover:text-[var(--bgColor)]">
+                                        More to Know
+                                    </span>
+                                    {/* Animated skewed strip */}
+                                    <span className="absolute top-0 left-[-10%] w-[120%] h-full bg-[var(--bgColor)] z-0 [transform:skew(30deg)] transition-[transform] duration-400 [transition-timing-function:cubic-bezier(0.3,1,0.8,1)]  group-hover:[transform:skew(30deg)_translateX(100%)] "></span>
                                 </button>
-
                             </div>
 
                         </div>

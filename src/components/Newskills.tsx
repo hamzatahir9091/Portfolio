@@ -73,11 +73,17 @@ const Newskills = ({ smootherRef }: NewSkillsProps) => {
 
 		gsap.to(".bigSkill", {
 			scale: 1,
+			
 			scrollTrigger: {
 				trigger: ".skillwrap",
 				start: "top 60%",
 				end: "center top",
 				scrub: true,
+				onEnter: () => { 
+					gsap.set(".animater",{
+						zIndex:150
+					})
+				 }
 				// markers: true
 			}
 		})

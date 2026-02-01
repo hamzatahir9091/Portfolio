@@ -9,6 +9,8 @@ import { ScrollSmoother } from "gsap/ScrollSmoother"
 
 import Projects from "./components/Projects"
 import Contacts from "./components/Contacts"
+import Temp from "./components/Temp"
+
 
 
 
@@ -160,6 +162,10 @@ function App() {
 					<About />
 
 					<Projects />
+
+					<div className='relative'>
+						<Temp />
+					</div>
 
 					<Newskills smootherRef={smootherRef} />
 
