@@ -16,13 +16,12 @@ const Projects = () => {
                 // markers: true
             }
         })
-
-
     })
     return (
         <>
             <div id='projects' className=' font-clashDisplay min-w-screen min-h-screen relative flex flex-col gap-[10vh]'>
-                <div className="projectwrap flex items-center justify-center h-[30vh]">
+
+                <div className="projectwrap flex items-end justify-center h-[30vh]">
                     <div
                         className="bigProject text-[6vw] transform scale-[4.2] font-erode font-extrabold ">
                         Projects

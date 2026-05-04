@@ -21,12 +21,6 @@ const About = () => {
 		const aboutTl = gsap.timeline({ paused: true });
 
 
-
-
-
-
-
-
 		if (!aboutimg) return;
 
 
@@ -146,16 +140,16 @@ const About = () => {
 
 	return (
 		<>
-			<div id="about" className="font-clashDisplay text-[var(--text)] h-screen flex flex-col  items-center justify-baseline ">
+			<div id="about" className="font-clashDisplay text-[var(--text)] h-screen flex flex-col  items-center justify-center ">
 
-				<div className="aboutwrap flex items-center justify-center h-[30vh]">
+				<div className="aboutwrap bg-ambe-300 flex items-end justify-center h-[30vh]">
 					<div
 						className="bigAbout text-[6vw] transform scale-[5] font-erode font-extrabold ">
 						About
 					</div>
 				</div>
 
-				<div className="relative content  w-screen h-[70%] text-[var(--text)] flex justify-center items-center gap-[4.76vw]  ">
+				<div className="relative content bg-re-300  w-screen h-[70%] text-[var(--text)] flex justify-center items-center gap-[4.76vw]  ">
 
 					<svg id="mug" style={{ willChange: "transform stroke" }} className="absolute top-[-8%] left-[3%] transform rotate-[-20deg] " width={"13vw"} version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1144 1146" preserveAspectRatio="xMidYMid meet" >
 						<path id="m1" style={{ willChange: "transform stroke" }} fill="none" stroke="#ffffff" strokeWidth="10" strokeLinecap="round" strokeLinejoin="round" d="M0 0 C3.717 2.61 4.824 4.088 5.688 8.562 C5.473 12.518 3.905 15.258 2 18.688 C-1.475 25.234 -2.201 30.691 -1 38 C1.293 45.328 6.218 50.984 10.848 56.977 C17.493 66.311 20.386 76.463 20.312 87.812 C20.305 89.146 20.305 89.146 20.298 90.507 C20.185 96.778 19.602 102.229 17 108 C16.66 108.812 16.319 109.624 15.969 110.461 C12.141 118.866 6.588 126.625 -1 132 C-5.494 132.735 -7.457 132.306 -11.438 130.062 C-14.302 126.639 -15.119 125.104 -14.863 120.723 C-13.446 116.253 -10.595 112.861 -7.792 109.155 C-1.081 100.258 0.109 92.163 -1 81 C-2.624 73.849 -6.614 68.494 -10.973 62.723 C-20.281 50.222 -23.606 38.463 -22 23 C-20.234 14.198 -16.411 5.845 -9.562 -0.125 C-5.921 -1.368 -3.688 -1.054 0 0 Z " transform="translate(496,269)" ></path>

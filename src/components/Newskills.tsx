@@ -531,7 +531,7 @@ const Newskills = ({ smootherRef }: NewSkillsProps) => {
 		<div ref={skillsContainer} id="skills" className=" z-10">
 			<div className="mainContent  font-clashDisplay relative  w-screen min-h-screen flex flex-col justify-center ">
 
-				<div className="skillwrap flex items-center justify-center h-[30vh]">
+				<div className="skillwrap flex items-end justify-center h-[30vh]">
 					<div
 						className="bigSkill text-[6vw] transform scale-[5] font-erode font-extrabold ">
 						Skills
